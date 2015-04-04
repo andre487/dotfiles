@@ -4,6 +4,7 @@ CONFIGS_REPO=git@github.yandex-team.ru:andre487/configs.git
 CONFIGS_DIR=.configs
 
 OHMYZSH_DIR=.oh-my-zsh
+FZF_DIR=.fzf
 
 set -e
 
@@ -30,3 +31,9 @@ done
 
 # Install Oh my ZSH
 [[ ! -d "$OHMYZSH_DIR" ]] && curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+
+# Install FZF
+if [[ ! -d "$FZF_DIR" ]]; then
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
+    ~/"$FZF_DIR"/install
+fi

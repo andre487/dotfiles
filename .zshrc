@@ -83,3 +83,4 @@ source ~/.usr-profile
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
 
+[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
