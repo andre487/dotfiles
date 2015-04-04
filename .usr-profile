@@ -4,8 +4,10 @@
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # Imports
-nvm_init=/usr/local/opt/nvm/nvm.sh
-gvm_init=~/.gvm/bin/gvm-init.sh
+nvm_init="/usr/local/opt/nvm/nvm.sh"
+gvm_init="~/.gvm/bin/gvm-init.sh"
+fzf_init="~/.fzf.zsh"
 
-[[ -f $nvm_init ]] && source $nvm_init
-[[ -f $gvm_init ]] && source $gvm_init
+[[ -f "$nvm_init" ]] && source "$nvm_init"
+[[ -f "$gvm_init" ]] && source "$gvm_init"
+[[ -f "$fzf_init" ]] && source "$fzf_init"
