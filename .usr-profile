@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# Exports
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# Imports
+nvm_init=/usr/local/opt/nvm/nvm.sh
+gvm_init=~/.gvm/bin/gvm-init.sh
+
+[[ -f $nvm_init ]] && source $nvm_init
+[[ -f $gvm_init ]] && source $gvm_init
