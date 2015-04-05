@@ -1,9 +1,9 @@
 " Config encoding
 scriptencoding utf-8
 set encoding=utf-8
-set nocompatible
 
 " General
+set nocompatible
 set ttyfast
 set nobackup
 set noswapfile
@@ -14,6 +14,9 @@ set clipboard+=unnamed
 
 set exrc secure
 set autoread
+
+set undofile
+set undodir=~/.vimundo/
 
 " Display
 set t_Co=256
@@ -33,12 +36,12 @@ endif
 " Text format 
 set termencoding=utf-8
 set fileformats=unix,dos,mac
+set fileencoding=utf-8
 set fileencodings=utf-8,ucs-2,cp1251,cp866,koi8-r
 
 set backspace=indent,eol,start
 set textwidth=120
 set spelllang=en,ru 
-set noeol
 
 " Indents 
 set tabstop=4
@@ -61,13 +64,13 @@ set lazyredraw
 " Code
 set completeopt=menu,preview
 set infercase
-set wrap
 set showmatch
 set matchpairs+=<:>
 set wildmenu
 set wildcharm=<TAB>
 
 " Search
+set ignorecase
 set smartcase
 set incsearch
 set hlsearch
@@ -77,4 +80,3 @@ set gdefault
 set diffopt=filler
 set diffopt+=horizontal
 set diffopt+=iwhite
-
