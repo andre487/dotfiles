@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(osx debian brew lwd autojump vi-mode git svn node npm bower pip python jsontools urltools encode64)
+plugins=(osx debian brew brew-cask lwd autojump git svn node npm bower pip python jsontools urltools encode64)
 
 if [[ -f $ZSH/oh-my-zsh.sh ]]; then
     source $ZSH/oh-my-zsh.sh
