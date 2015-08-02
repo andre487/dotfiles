@@ -7,6 +7,8 @@ export DOCKER_TLS_VERIFY=1
 export DOCKER_HOST=tcp://192.168.59.103:2376
 export DOCKER_CERT_PATH=/Users/andre487/.boot2docker/certs/boot2docker-vm
 
+export WEB4_SPELL_CHECK=1
+
 # Imports
 nvm_init="/usr/local/opt/nvm/nvm.sh"
 gvm_init="~/.gvm/bin/gvm-init.sh"
@@ -16,4 +18,4 @@ fzf_init="~/.fzf.zsh"
 [[ -f "$gvm_init" ]] && source "$gvm_init"
 [[ -f "$fzf_init" ]] && source "$fzf_init"
 
-export PATH=$PATH:~/Library/Android/sdk/platform-tools
+export PATH="./node_modules/.bin:$PATH:~/Library/Android/sdk/platform-tools"
