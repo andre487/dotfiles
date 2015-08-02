@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
 alias less="less -s -M +Gg"
+alias "dRunMongo"="docker run -p 27017:27017 -d mongo"
