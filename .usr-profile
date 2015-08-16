@@ -18,4 +18,7 @@ fzf_init="~/.fzf.zsh"
 [[ -f "$gvm_init" ]] && source "$gvm_init"
 [[ -f "$fzf_init" ]] && source "$fzf_init"
 
-export PATH="./node_modules/.bin:$PATH:~/Library/Android/sdk/platform-tools"
+export PATH="./node_modules/.bin:$PATH:$HOME/Library/Android/sdk/platform-tools"
+
+# Inits
+eval "$(thefuck --alias)"
