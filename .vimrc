@@ -16,16 +16,41 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'             " Vundle bundler
-Plugin 'scrooloose/nerdtree'              " Files tree at left
-Plugin 'jistr/vim-nerdtree-tabs'          " Some fixes for tabs
-Plugin 'YankRing.vim'                     " Copy-paste with suitable history
-Plugin 'kien/ctrlp.vim'                   " Fuzzy search for files
-Plugin 'sudo.vim'                         " Open file with sudo
-Plugin 'bronson/vim-trailing-whitespace'  " Highlight trailing whitespaces
-Plugin 'godlygeek/tabular'                " Aligning tables
-Plugin 'tpope/vim-markdown'               " Better markdown
-Plugin 'zhaocai/GoldenView.Vim'           " Golden ratio for splits
+" utils
+Plugin 'VundleVim/Vundle.vim'      " Vundle bundler
+Plugin 'YankRing.vim'              " Copy-paste with suitable history
+Plugin 'sudo.vim'                  " Open file with sudo
+Plugin 'zhaocai/GoldenView.Vim'    " Golden ratio for splits
+Plugin 'sjl/splice.vim'            " Better three-way merge
+Plugin 'vim-scripts/IndexedSearch' " Better search messages
+
+" files
+Plugin 'scrooloose/nerdtree'     " Files tree at left
+Plugin 'jistr/vim-nerdtree-tabs' " Some fixes for tabs
+Plugin 'kien/ctrlp.vim'          " Fuzzy search for files
+Plugin 'mileszs/ack.vim'         " Ack integration
+
+" text
+Plugin 'bronson/vim-trailing-whitespace' " Highlight trailing whitespaces
+Plugin 'godlygeek/tabular'               " Aligning tables
+
+" syntax
+Plugin 'scrooloose/syntastic.git'
+Plugin 'tpope/vim-markdown'
+Plugin 'vim-scripts/vimwiki'
+Plugin 'pangloss/vim-javascript'
+Plugin 'leshill/vim-json'
+Plugin 'othree/html5.vim'
+Plugin 'gregsexton/MatchTag'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'ap/vim-css-color'
+Plugin 'wavded/vim-stylus'
+Plugin 'miripiruni/vim-better-css-indent'
+Plugin 'fs111/pydoc.vim'
+
+" services
+Plugin 'mattn/webapi-vim' " Web API (for gists)
+Plugin 'mattn/gist-vim'   " Gist creating
 
 call vundle#end()
 filetype plugin indent on
@@ -55,6 +80,11 @@ set hidden
 set history=1000
 
 set autoread
+
+noremap   <Up>     <NOP>
+noremap   <Down>   <NOP>
+noremap   <Left>   <NOP>
+noremap   <Right>  <NOP>
 
 " Display
 set t_Co=256
