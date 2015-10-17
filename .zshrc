@@ -71,6 +71,7 @@ export LANG=ru_RU.UTF-8
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
 source ~/.usr-profile
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -82,4 +83,3 @@ source ~/.usr-profile
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source ~/.aliases
-

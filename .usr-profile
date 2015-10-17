@@ -22,3 +22,7 @@ export PATH="./node_modules/.bin:$PATH:$HOME/Library/Android/sdk/platform-tools"
 
 # Inits
 eval "$(thefuck --alias)"
+
+# NVM
+export NVM_DIR="/Users/andre487/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
