@@ -20,6 +20,7 @@ else
 fi
 
 # Create config files
+cd ~
 for file in `find "$CONFIGS_DIR" -maxdepth 1 -type f -name "\.*" -exec basename {} \;`; do
     [[ -f "$file" ]] && rm "$file"
     ln -s "$CONFIGS_DIR/$file"
