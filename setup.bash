@@ -3,9 +3,6 @@
 CONFIGS_REPO=git@github.com:andre487/dotfiles.git
 CONFIGS_DIR=.dotfiles
 
-OHMYZSH_DIR=.oh-my-zsh
-FZF_DIR=.fzf
-
 set -e
 
 cd ~
@@ -30,15 +27,22 @@ for file in `find "$CONFIGS_DIR" -maxdepth 1 -type f -name "\.*" -exec basename 
 done
 
 # Install Oh my ZSH
+OHMYZSH_DIR=.oh-my-zsh
+
 if [[ ! -d "$OHMYZSH_DIR" ]]; then
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
 fi
 
 # Install FZF
-if [[ ! -d "$FZF_DIR" ]]; then
+FZF_DIR=.fzf
+
+set +e
+which fzf &> /dev/null
+if [[ $? != 0 ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
     ~/"$FZF_DIR"/install
 fi
+set -e
 
 # The fuck
 set +e
