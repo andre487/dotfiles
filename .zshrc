@@ -46,7 +46,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    vi-mode common-aliases copydir copyfile dircycle dirhistory dirpersist colored-man-pages colorize
+    common-aliases copydir copyfile dircycle dirhistory dirpersist colored-man-pages colorize
     catimg jsontools urltools encode64 emoji
     git git-extras git-prompt git-remote-branch github gitignore svn
     node npm bower coffee grunt gulp
