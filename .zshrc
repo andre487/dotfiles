@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -23,7 +23,7 @@ CASE_SENSITIVE="false"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -45,10 +45,20 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(osx debian brew brew-cask lwd autojump git svn node npm bower pip python jsontools urltools encode64)
+plugins=(
+    vi-mode common-aliases copydir copyfile dircycle dirhistory dirpersist colored-man-pages colorize
+    catimg jsontools urltools encode64 emoji
+    git git-extras git-prompt git-remote-branch github gitignore svn
+    node npm bower coffee grunt gulp
+    python pip autopep8 django virtualenv virtualenvwrapper
+    php composer
+    golang
+    emacs codeclimate vundle
+    docker docker-compose capistrano
+)
 
-if [[ -f $ZSH/oh-my-zsh.sh ]]; then
-    source $ZSH/oh-my-zsh.sh
+if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+    source "$ZSH/oh-my-zsh.sh"
 else
     echo "Oh my zsh not found"
 fi
@@ -60,19 +70,13 @@ fi
 export LANG=ru_RU.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export EDITOR="vim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-source ~/.usr-profile
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -82,4 +86,30 @@ source ~/.usr-profile
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.aliases
+alias less="less -s -M +Gg"
+
+#
+# Path
+#
+export PATH="./node_modules/.bin:$HOME/node_modules/.bin:$PATH"
+
+#
+# Extra services
+#
+if [[ -f "$HOME/.fzf.zsh" ]]; then
+    source "$HOME/.fzf.zsh"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    source "$NVM_DIR/nvm.sh"
+fi
+
+eval "$(thefuck --alias)"
+
+#
+# User defined .zshrc
+#
+if [[ -f "$HOME/.zshrc.extra" ]]; then
+    source "$HOME/.zshrc.extra"
+fi
