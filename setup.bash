@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 CONFIGS_REPO=git@github.com:andre487/dotfiles.git
-CONFIGS_DIR=.dorfiles
+CONFIGS_DIR=.dotfiles
 
 OHMYZSH_DIR=.oh-my-zsh
 FZF_DIR=.fzf
