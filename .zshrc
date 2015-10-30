@@ -47,6 +47,7 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     common-aliases copydir copyfile dircycle dirhistory dirpersist colored-man-pages colorize
+    tmux tmuxinator
     catimg jsontools urltools encode64 emoji
     git git-extras git-prompt git-remote-branch github gitignore svn
     node npm bower coffee grunt gulp
