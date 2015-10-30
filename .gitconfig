@@ -1,3 +1,7 @@
+[user]
+    name = andre487
+    email = andre487@yandex-team.ru
+
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol,space-before-tab
     editor = vim
