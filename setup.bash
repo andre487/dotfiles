@@ -20,10 +20,13 @@ else
 fi
 
 # Create config files
-cd ~
 for file in `find "$CONFIGS_DIR" -maxdepth 1 -type f -name "\.*" -exec basename {} \;`; do
-    [[ -f "$file" ]] && rm -f "$file"
-    ln -s "$CONFIGS_DIR/$file"
+    file_path="$HOME/$file"
+    if [[ -L "$file_path" ]]; then 
+        rm "$file_path"
+    fi
+
+    ln -s "$CONFIGS_DIR/$file" "$file_path"
     echo "Set up $file"
 done
 
