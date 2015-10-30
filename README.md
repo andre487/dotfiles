@@ -1,6 +1,6 @@
-# Мои конфиги
+# My dotfiles
 
-Установка/обновление:
+Setup/update:
 ```
-curl -L https://github.yandex-team.ru/andre487/configs/raw/master/setup.bash | bash
+curl -L https://github.com/andre487/dotfiles/raw/master/setup.bash | bash
 ```
