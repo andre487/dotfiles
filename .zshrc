@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="false"
+# CASE_SENSITIVE="false"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
