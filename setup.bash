@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIGS_REPO=git@github.com:andre487/dotfiles.git
+CONFIGS_REPO=https://github.com/andre487/dotfiles.git
 CONFIGS_DIR=.dotfiles
 
 set -e
@@ -22,7 +22,7 @@ fi
 # Create config files
 for file in `find "$CONFIGS_DIR" -maxdepth 1 -type f -name "\.*" -exec basename {} \;`; do
     file_path="$HOME/$file"
-    if [[ -L "$file_path" ]]; then 
+    if [[ -L "$file_path" ]]; then
         rm "$file_path"
     fi
 
@@ -44,7 +44,7 @@ set +e
 which fzf &> /dev/null
 if [[ $? != 0 ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
-    ~/"$FZF_DIR"/install
+    ~/"$FZF_DIR"/install --key-bindings --completion --no-update-rc
 fi
 set -e
 
