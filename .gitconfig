@@ -81,3 +81,10 @@
 [mergetool "splice"]
     cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge --skip %f
+[lfs]
+	batch = true
+	concurrenttransfers = 32
