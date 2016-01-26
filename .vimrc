@@ -33,6 +33,7 @@ Plugin 'mileszs/ack.vim'         " Ack integration
 " text
 Plugin 'bronson/vim-trailing-whitespace' " Highlight trailing whitespaces
 Plugin 'godlygeek/tabular'               " Aligning tables
+Plugin 'mayton/bunin.vim'                " Edit strings in buffer
 
 " syntax
 Plugin 'scrooloose/syntastic.git'
@@ -167,3 +168,6 @@ let g:ctrlp_cmd = 'CtrlP'
 
 " GoldenView
 let g:goldenview__enable_default_mapping=0
+
+" Bunin
+map <C-B> :BuninEdit<CR>
