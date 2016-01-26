@@ -114,3 +114,6 @@ eval "$(thefuck --alias)"
 if [[ -f "$HOME/.zshrc.extra" ]]; then
     source "$HOME/.zshrc.extra"
 fi
+
+# added by travis gem
+[ -f /Users/andre487/.travis/travis.sh ] && source /Users/andre487/.travis/travis.sh
