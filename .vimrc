@@ -20,7 +20,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'      " Vundle bundler
 Plugin 'YankRing.vim'              " Copy-paste with suitable history
 Plugin 'sudo.vim'                  " Open file with sudo
-Plugin 'zhaocai/GoldenView.Vim'    " Golden ratio for splits
+" Plugin 'zhaocai/GoldenView.Vim'    " Golden ratio for splits
 Plugin 'sjl/splice.vim'            " Better three-way merge
 Plugin 'vim-scripts/IndexedSearch' " Better search messages
 

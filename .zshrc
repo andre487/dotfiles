@@ -49,7 +49,7 @@ plugins=(
     copydir copyfile dircycle dirhistory dirpersist colored-man-pages colorize
     tmux tmuxinator
     catimg jsontools urltools encode64 emoji
-    git git-extras git-remote-branch github gitignore svn
+    git github svn
     node npm bower coffee grunt gulp
     python pip autopep8 django virtualenv virtualenvwrapper
     php composer
@@ -105,8 +105,6 @@ export NVM_DIR="$HOME/.nvm"
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
     source "$NVM_DIR/nvm.sh"
 fi
-
-eval "$(thefuck --alias)"
 
 #
 # User defined .zshrc
