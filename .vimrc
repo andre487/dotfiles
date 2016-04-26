@@ -26,6 +26,7 @@ Plugin 'vim-scripts/IndexedSearch' " Better search messages
 
 " files
 Plugin 'scrooloose/nerdtree'     " Files tree at left
+Plugin 'jeetsukumaran/vim-buffergator' " Buffers like tabs
 Plugin 'jistr/vim-nerdtree-tabs' " Some fixes for tabs
 Plugin 'kien/ctrlp.vim'          " Fuzzy search for files
 Plugin 'mileszs/ack.vim'         " Ack integration
@@ -81,11 +82,6 @@ set hidden
 set history=1000
 
 set autoread
-
-noremap   <Up>     <NOP>
-noremap   <Down>   <NOP>
-noremap   <Left>   <NOP>
-noremap   <Right>  <NOP>
 
 " Display
 set t_Co=256
@@ -157,6 +153,7 @@ set diffopt+=iwhite
 
 " NERDTree
 map <F2> :NERDTreeToggle<CR>
+map <F3> :BuffergatorToggle<CR>
 
 " YankRing
 let g:yankring_history_dir = $HOME.'/.vim/'
