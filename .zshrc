@@ -46,16 +46,14 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    copydir copyfile dircycle dirhistory dirpersist colored-man-pages colorize
-    tmux tmuxinator
-    catimg jsontools urltools encode64 emoji
-    git github svn
-    node npm bower coffee grunt gulp
-    python pip autopep8 django virtualenv virtualenvwrapper
+    colored-man-pages
+    tmux
+    catimg urltools encode64
+    npm bower grunt gulp
+    python pip autopep8 virtualenv virtualenvwrapper
     php composer
     golang
-    emacs codeclimate vundle
-    docker docker-compose capistrano
+    docker docker-compose
 )
 
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
