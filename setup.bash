@@ -47,11 +47,3 @@ if [[ $? != 0 ]]; then
     ~/"$FZF_DIR"/install --key-bindings --completion --no-update-rc
 fi
 set -e
-
-# The fuck
-set +e
-which thefuck &> /dev/null
-if [[ $? != 0 ]]; then
-    wget -O - https://raw.githubusercontent.com/nvbn/thefuck/master/install.sh | sh - && $0
-fi
-set -e
