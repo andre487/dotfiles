@@ -47,13 +47,8 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     colored-man-pages
-    tmux
     catimg urltools encode64
-    npm bower grunt gulp
-    python pip autopep8 virtualenv virtualenvwrapper
-    php composer
-    golang
-    docker docker-compose
+    npm bower
 )
 
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
@@ -99,11 +94,6 @@ if [[ -f "$HOME/.fzf.zsh" ]]; then
     source "$HOME/.fzf.zsh"
 fi
 
-export NVM_DIR="$HOME/.nvm"
-if [[ -s "$NVM_DIR/nvm.sh" ]]; then
-    source "$NVM_DIR/nvm.sh"
-fi
-
 #
 # User defined .zshrc
 #
@@ -111,5 +101,14 @@ if [[ -f "$HOME/.zshrc.extra" ]]; then
     source "$HOME/.zshrc.extra"
 fi
 
-# added by travis gem
-[ -f /Users/andre487/.travis/travis.sh ] && source /Users/andre487/.travis/travis.sh
+#
+# NVM must be after any PATH modifications
+#
+export NVM_DIR="$HOME/.nvm"
+if [[ ! -d "$NVM_DIR" ]]; then
+    export NVM_DIR="/usr/local/opt/nvm"
+fi
+
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    source "$NVM_DIR/nvm.sh"
+fi
