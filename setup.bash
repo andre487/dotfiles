@@ -26,16 +26,11 @@ for file in `find "$CONFIGS_DIR" -maxdepth 1 -type f -name "\.*" -exec basename 
         rm "$file_path"
     fi
 
+    set +e
     ln -s "$CONFIGS_DIR/$file" "$file_path"
+    set -e
     echo "Set up $file"
 done
-
-# Install Oh my ZSH
-OHMYZSH_DIR=.oh-my-zsh
-
-if [[ ! -d "$OHMYZSH_DIR" ]]; then
-    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
-fi
 
 # Install FZF
 FZF_DIR=.fzf
@@ -47,3 +42,12 @@ if [[ $? != 0 ]]; then
     ~/"$FZF_DIR"/install --key-bindings --completion --no-update-rc
 fi
 set -e
+
+# Install Oh my ZSH
+OHMYZSH_DIR=.oh-my-zsh
+
+if [[ ! -d "$OHMYZSH_DIR" ]]; then
+    set +e
+    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+    set -e
+fi
