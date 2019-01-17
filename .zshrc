@@ -113,7 +113,7 @@ fi
 # Define methods
 #
 disable_git_tracking() {
-    git_dir="$(git rev-parse --git-dir &> /dev/null || true)"
+    git_dir="$(git rev-parse --git-dir 2> /dev/null || true)"
     if [[ -n "$git_dir" ]]; then
         echo "Disable git tracking for $git_dir"
         git config --add oh-my-zsh.hide-status 1
