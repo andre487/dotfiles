@@ -4,38 +4,6 @@
 
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol,space-before-tab
-    editor = vim
-
-[merge]
-    tool = splice
-    log = true
-
-[branch]
-    autosetuprebase = always
-
-[push]
-    default = current
-
-[color]
-    diff = yes
-    ui = auto
-
-[color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
-
-[color "diff"]
-    meta = yellow
-    frag = magenta
-    old = red
-    new = green
-    whitespace = red reverse
-
-[color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
 
 [alias]
     st = status
@@ -55,35 +23,8 @@
     lol = log --graph --decorate --pretty=oneline --abbrev-commit
     lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
     hist = log --pretty=format:'%C(yellow)%h%C(reset) %ad | %C(75)%s%C(reset) %C(yellow)%d%C(reset) [%an]' --graph --date=short --branches --all
-    standup = log --since '1 day ago' --oneline --author <YOUREMAIL>
-
     # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
-
-[diff]
-    noprefix = true
-
-[url "git@github.yandex-team.ru:"]
-    pushInsteadOf = "ght:"
-
-[url "git://github.yandex-team.ru/"]
-    insteadOf = "ght:"
-
-[url "git@github.com:"]
-    pushInsteadOf = "gh:"
-
-[url "git://github.com/"]
-    insteadOf = "gh:"
-
-[url "git@github.com:"]
-    insteadOf = https://github.com/
-
-[help]
-    autocorrect = 1
-
-[mergetool "splice"]
-    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
-    trustExitCode = true
 
 [filter "lfs"]
     clean = git-lfs clean %f
@@ -91,9 +32,5 @@
     process = git-lfs filter-process --skip
     required = true
 
-[lfs]
-	batch = true
-	concurrenttransfers = 15
-
-[lfs "https://github.yandex-team.ru/andre487/web4.git/info/lfs"]
+[lfs "https://github.yandex-team.ru/"]
     locksverify = false
