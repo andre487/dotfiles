@@ -123,4 +123,6 @@ disable_git_tracking() {
     fi
 }
 
-export -f disable_git_tracking > /dev/null
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export -f disable_git_tracking > /dev/null
+fi
