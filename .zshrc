@@ -45,11 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    colored-man-pages
-    catimg urltools encode64
-    npm bower
-)
+plugins=()
 
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
     source "$ZSH/oh-my-zsh.sh"
@@ -112,3 +108,19 @@ fi
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
     source "$NVM_DIR/nvm.sh"
 fi
+
+#
+# Define methods
+#
+disable_git_tracking() {
+    git_dir="$(git rev-parse --git-dir &> /dev/null || true)"
+    if [[ -n "$git_dir" ]]; then
+        echo "Disable git tracking for $git_dir"
+        git config --add oh-my-zsh.hide-status 1
+        git config --add oh-my-zsh.hide-dirty 1
+    else
+        echo "Current dir is not a git repository"
+    fi
+}
+
+export -f disable_git_tracking > /dev/null
