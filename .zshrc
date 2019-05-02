@@ -45,7 +45,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=()
+plugins=(svn)
 
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
     source "$ZSH/oh-my-zsh.sh"
@@ -123,6 +123,17 @@ disable_git_tracking() {
     fi
 }
 
+cleanup_git_branches() {
+    git br | grep -v '*' | grep -v dev | grep -v master | xargs git br -D
+}
+
+setup_home_git() {
+    git config --local user.name "Andrey Prokopyuk"
+    git config --local user.email "andrey.prokopyuk@gmail.com"
+}
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
     export -f disable_git_tracking > /dev/null
+    export -f cleanup_git_branches > /dev/null
+    export -f setup_home_git > /dev/null
 fi
