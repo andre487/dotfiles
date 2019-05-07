@@ -81,7 +81,7 @@ alias less="less -s -M +Gg"
 #
 # Path
 #
-export PATH="./node_modules/.bin:$HOME/node_modules/.bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:./node_modules/.bin:$HOME/node_modules/.bin:$PATH"
 
 #
 # Extra services
