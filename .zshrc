@@ -124,7 +124,11 @@ disable_git_tracking() {
 }
 
 cleanup_git_branches() {
-    git br | grep -v '*' | grep -v dev | grep -v master | xargs git br -D
+    git br | grep -v '*' | grep -v dev | grep -v master | xargs -L1 git br -D
+}
+
+cleanup_arc_branches() {
+    arc branch | grep -v '*' | grep -v trunk | xargs -L1 arc branch -D
 }
 
 setup_home_git() {
