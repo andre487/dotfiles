@@ -77,6 +77,12 @@ export EDITOR="vim"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias less="less -s -M +Gg"
+alias git="LANG=C git"
+
+#
+# Settings
+#
+export BC_ENV_ARGS='-lq'
 
 #
 # Path

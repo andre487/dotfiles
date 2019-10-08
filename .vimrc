@@ -106,7 +106,7 @@ syntax on
 set lazyredraw
 
 " Colors
-set background=dark
+set background=light
 
 " Text format
 set termencoding=utf-8
