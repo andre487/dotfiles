@@ -1,53 +1,46 @@
 #!/usr/bin/env bash
-
-CONFIGS_REPO=https://github.com/andre487/dotfiles.git
-CONFIGS_DIR=.dotfiles
-
-set -e
-
+set -e -o pipefail
 cd ~
 
+configs_repo=https://github.com/andre487/dotfiles.git
+configs_dir=.dotfiles
+
 # Checkout configs
-if [[ -d "$CONFIGS_DIR" ]]; then
-    cd "$CONFIGS_DIR"
-    git stash clear
-    git stash
-    git pull
-    git stash apply 2> /dev/null || true
+if [[ -d "$configs_dir" ]]; then
+    cd "$configs_dir"
+    cur_branch="$(git branch --show-current)"
+    git pull --rebase --autostash origin "$cur_branch"
     cd - > /dev/null
 else
-    git clone "$CONFIGS_REPO" "$CONFIGS_DIR"
+    git clone "$configs_repo" "$configs_dir"
 fi
 
 # Create config files
-for file in `find "$CONFIGS_DIR" -maxdepth 1 -type f -name "\.*" -exec basename {} \;`; do
+config_files=($(find "$configs_dir" -maxdepth 1 -type f -name "\.*" -exec basename {} \;))
+for file in "${config_files[@]}"; do
     file_path="$HOME/$file"
     if [[ -L "$file_path" ]]; then
         rm "$file_path"
     fi
-
-    set +e
-    ln -s "$CONFIGS_DIR/$file" "$file_path"
-    set -e
-    echo "Set up $file"
+    ln -s "$configs_dir/$file" "$file_path" || true
+    echo "Setup $file"
 done
 
 # Install FZF
-FZF_DIR=.fzf
-
+fzf_dir=.fzf
 set +e
 which fzf &> /dev/null
 if [[ $? != 0 ]]; then
-    git clone --depth 1 https://github.com/junegunn/fzf.git "$FZF_DIR"
-    ~/"$FZF_DIR"/install --key-bindings --completion --no-update-rc
+    git clone --depth 1 https://github.com/junegunn/fzf.git "$fzf_dir"
+    "$HOME/$fzf_dir/install" --key-bindings --completion --no-update-rc
 fi
 set -e
 
 # Install Oh my ZSH
-OHMYZSH_DIR=.oh-my-zsh
-
-if [[ ! -d "$OHMYZSH_DIR" ]]; then
+ohmyzsh_dir=.oh-my-zsh
+if [[ ! -d "$ohmyzsh_dir" ]]; then
     set +e
+    export KEEP_ZSHRC=yes
     curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
     set -e
 fi
