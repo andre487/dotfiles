@@ -96,6 +96,10 @@ if [[ -f "$HOME/.fzf.zsh" ]]; then
     source "$HOME/.fzf.zsh"
 fi
 
+if [[ -f '/usr/local/share/zsh-completions' ]]; then
+    export fpath=(/usr/local/share/zsh-completions $fpath)
+fi
+
 #
 # User defined .zshrc
 #
@@ -114,6 +118,16 @@ fi
 if [[ -s "$NVM_DIR/nvm.sh" ]]; then
     source "$NVM_DIR/nvm.sh"
 fi
+
+if [[ -f "$HOME/.yql/shell_completion" ]]; then
+    source "$HOME/.yql/shell_completion"
+fi
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
+
+# The next line enables shell command completion for yc.
+if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
 
 #
 # Define methods
