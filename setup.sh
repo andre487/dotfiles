@@ -8,7 +8,7 @@ configs_dir=.dotfiles
 # Checkout configs
 if [[ -d "$configs_dir" ]]; then
     cd "$configs_dir"
-    cur_branch="$(git branch --show-current)"
+    cur_branch="$(git branch | grep '*' | sed -E 's/[* ]+//g')"
     git pull --rebase --autostash origin "$cur_branch"
     cd - > /dev/null
 else
