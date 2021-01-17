@@ -9,7 +9,9 @@ configs_dir=.dotfiles
 if [[ -d "$configs_dir" ]]; then
     cd "$configs_dir"
     cur_branch="$(git branch | grep '*' | sed -E 's/[* ]+//g')"
-    git pull --rebase --autostash origin "$cur_branch"
+    git stash
+    git pull --rebase origin "$cur_branch"
+    git stash apply
     cd - > /dev/null
 else
     git clone "$configs_repo" "$configs_dir"
