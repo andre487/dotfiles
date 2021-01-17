@@ -11,7 +11,7 @@ if [[ -d "$configs_dir" ]]; then
     cur_branch="$(git branch | grep '*' | sed -E 's/[* ]+//g')"
     git stash
     git pull --rebase origin "$cur_branch"
-    git stash apply
+    git stash apply || true
     cd - > /dev/null
 else
     git clone "$configs_repo" "$configs_dir"
