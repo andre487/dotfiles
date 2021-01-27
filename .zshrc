@@ -113,9 +113,12 @@ fi
 export NVM_DIR="$HOME/.nvm"
 if [[ ! -d "$NVM_DIR" ]]; then
     export NVM_DIR="/usr/local/opt/nvm"
+    if [[ ! -d "$NVM_DIR" ]]; then
+        export NVM_DIR=
+    fi
 fi
 
-if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
     source "$NVM_DIR/nvm.sh"
 fi
 
