@@ -58,6 +58,7 @@ fi
 
 # You may need to manually set your language environment
 export LANG=ru_RU.UTF-8
+export LC_ALL="$LANG"
 
 # Preferred editor for local and remote sessions
 export EDITOR="vim"
