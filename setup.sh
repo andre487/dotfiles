@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex -o pipefail
+set -e -o pipefail
 cd ~
 
 configs_repo=https://github.com/andre487/dotfiles.git
