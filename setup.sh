@@ -43,6 +43,6 @@ ohmyzsh_dir=.oh-my-zsh
 if [[ ! -d "$ohmyzsh_dir" ]]; then
     set +e
     export KEEP_ZSHRC=yes
-    curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+    sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
     set -e
 fi

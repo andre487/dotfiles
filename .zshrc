@@ -14,7 +14,8 @@ ZSH_THEME="robbyrussell"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+export UPDATE_ZSH_DAYS=30
+export DISABLE_UPDATE_PROMPT=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -45,8 +46,18 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(svn pip)
+plugins=()
 
+#
+# User defined .zshrc
+#
+if [[ -f "$HOME/.zshrc.extra" ]]; then
+    source "$HOME/.zshrc.extra"
+fi
+
+#
+# Oh my ZSH activation
+#
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
     source "$ZSH/oh-my-zsh.sh"
 else
@@ -78,7 +89,6 @@ export EDITOR="vim"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias less="less -s -M +Gg"
-alias git="LANG=C git"
 
 #
 # Settings
@@ -103,13 +113,6 @@ fi
 
 if [[ -d ~/.zfunc ]]; then
     fpath=(~/.zfunc $fpath)
-fi
-
-#
-# User defined .zshrc
-#
-if [[ -f "$HOME/.zshrc.extra" ]]; then
-    source "$HOME/.zshrc.extra"
 fi
 
 #
@@ -164,7 +167,7 @@ setup_home_git() {
     git config --local user.email "andrey.prokopyuk@gmail.com"
 }
 
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ "$(uname)" == "Darwin" ]]; then
     export -f disable_git_tracking > /dev/null
     export -f cleanup_git_branches > /dev/null
     export -f setup_home_git > /dev/null
