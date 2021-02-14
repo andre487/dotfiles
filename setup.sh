@@ -48,4 +48,4 @@ if [[ ! -d "$ohmyzsh_dir" ]]; then
 fi
 
 # Install Vim plugins
-vim +PluginInstall +qall
+vim +PluginInstall +qall 2> /dev/null
