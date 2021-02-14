@@ -46,3 +46,6 @@ if [[ ! -d "$ohmyzsh_dir" ]]; then
     sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended
     set -e
 fi
+
+# Install Vim plugins
+vim +PluginInstall +qall
