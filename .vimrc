@@ -46,7 +46,7 @@ set nocompatible
 set ttyfast
 set nobackup
 set noswapfile
-set shell=$SHELL
+set shell=/bin/bash
 
 set laststatus=2
 set statusline=[%n]\ %t\ \|\ %Y\ %{&encoding}\ %{&ff}\ \|\ Len\ %L\ \|\ Pos\ %03l:%03v\ %p%%\ \|\ Reg\ %{v:register}\ %=%<%F\ %m%r%h%q%w
