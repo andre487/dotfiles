@@ -171,8 +171,4 @@ if [[ "$(uname)" == "Darwin" ]]; then
     export -f disable_git_tracking > /dev/null
     export -f cleanup_git_branches > /dev/null
     export -f setup_yandex_git > /dev/null
-
-    export PYCURL_SSL_LIBRARY=openssl
-    export LDFLAGS=-L/usr/local/opt/openssl/lib
-    export CPPFLAGS=-I/usr/local/opt/openssl/include
 fi
