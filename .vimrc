@@ -17,42 +17,22 @@ set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
 " utils
-Plugin 'VundleVim/Vundle.vim'      " Vundle bundler
-Plugin 'YankRing.vim'              " Copy-paste with suitable history
-Plugin 'sudo.vim'                  " Open file with sudo
-" Plugin 'zhaocai/GoldenView.Vim'    " Golden ratio for splits
-Plugin 'sjl/splice.vim'            " Better three-way merge
-Plugin 'vim-scripts/IndexedSearch' " Better search messages
+Plugin 'VundleVim/Vundle.vim'      " Vundle bundler, https://github.com/VundleVim/Vundle.vim
+Plugin 'vim-scripts/IndexedSearch' " Better search message, https://github.com/vim-scripts/IndexedSearch
 
 " files
-Plugin 'scrooloose/nerdtree'     " Files tree at left
-Plugin 'jeetsukumaran/vim-buffergator' " Buffers like tabs
-Plugin 'jistr/vim-nerdtree-tabs' " Some fixes for tabs
-Plugin 'kien/ctrlp.vim'          " Fuzzy search for files
-Plugin 'mileszs/ack.vim'         " Ack integration
+Plugin 'preservim/nerdtree'            " Files tree at left, https://github.com/preservim/nerdtree
+Plugin 'jistr/vim-nerdtree-tabs'       " Some fixes for tabs, https://github.com/jistr/vim-nerdtree-tabs
+Plugin 'jeetsukumaran/vim-buffergator' " Work with buffers as tabs, https://github.com/jeetsukumaran/vim-buffergator
 
 " text
-Plugin 'bronson/vim-trailing-whitespace' " Highlight trailing whitespaces
-Plugin 'godlygeek/tabular'               " Aligning tables
-Plugin 'mayton/bunin.vim'                " Edit strings in buffer
+Plugin 'bronson/vim-trailing-whitespace' " Highlight trailing whitespaces, https://github.com/bronson/vim-trailing-whitespace
+Plugin 'mayton/bunin.vim'                " Edit bundle strings in buffer (for example borschik:include), https://github.com/mayton/bunin.vim
 
 " syntax
-Plugin 'scrooloose/syntastic.git'
-Plugin 'tpope/vim-markdown'
-Plugin 'vim-scripts/vimwiki'
-Plugin 'pangloss/vim-javascript'
-Plugin 'leshill/vim-json'
-Plugin 'othree/html5.vim'
-Plugin 'gregsexton/MatchTag'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'ap/vim-css-color'
-Plugin 'wavded/vim-stylus'
-Plugin 'miripiruni/vim-better-css-indent'
-Plugin 'fs111/pydoc.vim'
-
-" services
-Plugin 'mattn/webapi-vim' " Web API (for gists)
-Plugin 'mattn/gist-vim'   " Gist creating
+Plugin 'scrooloose/syntastic.git' " Very many syntaxes support, https://github.com/vim-syntastic/syntastic
+Plugin 'gregsexton/MatchTag'      " Highlight matching HTML tags, https://github.com/gregsexton/MatchTag
+Plugin 'ap/vim-css-color'         " Show colors in CSS, https://github.com/ap/vim-css-color
 
 call vundle#end()
 filetype plugin indent on
@@ -70,7 +50,6 @@ set shell=$SHELL
 
 set laststatus=2
 set statusline=%t\ (%Y)%m%r%h%w\ [LEN=%L]\ [ENC=%{&encoding}]\[FMT=%{&ff}]\ [POS=%03l,%03v][%p%%]
-set clipboard+=unnamed
 
 set exrc secure
 set autoread
@@ -154,17 +133,6 @@ set diffopt+=iwhite
 " NERDTree
 map <F2> :NERDTreeToggle<CR>
 map <F3> :BuffergatorToggle<CR>
-
-" YankRing
-let g:yankring_history_dir = $HOME.'/.vim/'
-let g:yankring_history_file = '.yankring_history'
-
-" CtrlP
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-" GoldenView
-let g:goldenview__enable_default_mapping=0
 
 " Bunin
 map <C-B> :BuninEdit<CR>
