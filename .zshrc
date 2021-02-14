@@ -155,22 +155,22 @@ disable_git_tracking() {
 }
 
 cleanup_git_branches() {
-    git br | grep -v '*' | grep -v dev | grep -v master | xargs -L1 git br -D
+    git br | grep -v '*' | grep -vE '(dev)|(master)|(main)' | xargs -L1 git br -D
 }
 
 cleanup_arc_branches() {
     arc branch | grep -v '*' | grep -v trunk | xargs -L1 arc branch -D
 }
 
-setup_home_git() {
-    git config --local user.name "Andrey Prokopyuk"
-    git config --local user.email "andrey.prokopyuk@gmail.com"
+setup_yandex_git() {
+    git config --local user.name "andre487"
+    git config --local user.email "andre487@yandex-team.ru"
 }
 
 if [[ "$(uname)" == "Darwin" ]]; then
     export -f disable_git_tracking > /dev/null
     export -f cleanup_git_branches > /dev/null
-    export -f setup_home_git > /dev/null
+    export -f setup_yandex_git > /dev/null
 
     export PYCURL_SSL_LIBRARY=openssl
     export LDFLAGS=-L/usr/local/opt/openssl/lib
