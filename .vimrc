@@ -49,7 +49,7 @@ set noswapfile
 set shell=$SHELL
 
 set laststatus=2
-set statusline=%t\ (%Y)%m%r%h%w\ [LEN=%L]\ [ENC=%{&encoding}]\[FMT=%{&ff}]\ [POS=%03l,%03v][%p%%]
+set statusline=[%n]\ %t\ \|\ %Y\ %{&encoding}\ %{&ff}\ \|\ Len\ %L\ \|\ Pos\ %03l:%03v\ %p%%\ \|\ Reg\ %{v:register}\ %=%<%F\ %m%r%h%q%w
 
 set exrc secure
 set autoread
