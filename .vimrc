@@ -13,6 +13,7 @@ if has("user_commands")
 endif
 
 filetype off
+set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
@@ -22,7 +23,6 @@ Plugin 'vim-scripts/IndexedSearch' " Better search message, https://github.com/v
 
 " files
 Plugin 'preservim/nerdtree'            " Files tree at left, https://github.com/preservim/nerdtree
-Plugin 'jistr/vim-nerdtree-tabs'       " Some fixes for tabs, https://github.com/jistr/vim-nerdtree-tabs
 Plugin 'jeetsukumaran/vim-buffergator' " Work with buffers as tabs, https://github.com/jeetsukumaran/vim-buffergator
 
 " text
@@ -30,9 +30,13 @@ Plugin 'bronson/vim-trailing-whitespace' " Highlight trailing whitespaces, https
 Plugin 'mayton/bunin.vim'                " Edit bundle strings in buffer (for example borschik:include), https://github.com/mayton/bunin.vim
 
 " syntax
-Plugin 'scrooloose/syntastic.git' " Very many syntaxes support, https://github.com/vim-syntastic/syntastic
-Plugin 'gregsexton/MatchTag'      " Highlight matching HTML tags, https://github.com/gregsexton/MatchTag
-Plugin 'ap/vim-css-color'         " Show colors in CSS, https://github.com/ap/vim-css-color
+Plugin 'othree/yajs.vim'               " JavaScript, https://github.com/othree/yajs.vim
+Plugin 'HerringtonDarkholme/yats.vim'  " TypeScript, https://github.com/HerringtonDarkholme/yats.vim
+Plugin 'maxmellon/vim-jsx-pretty'      " JSX/TSX, https://github.com/MaxMEllon/vim-jsx-pretty
+Plugin 'numirias/semshi'               " Python, https://github.com/numirias/semshi
+Plugin 'Vimjas/vim-python-pep8-indent' " PEP8 Indents, https://github.com/Vimjas/vim-python-pep8-indent
+Plugin 'gregsexton/MatchTag'           " Highlight matching HTML tags, https://github.com/gregsexton/MatchTag
+Plugin 'tpope/vim-commentary'          " Comment command, https://github.com/tpope/vim-commentary
 
 call vundle#end()
 filetype plugin indent on
@@ -42,14 +46,10 @@ scriptencoding utf-8
 set encoding=utf-8
 
 " General
-set nocompatible
 set ttyfast
 set nobackup
 set noswapfile
 set shell=/bin/bash
-
-set laststatus=2
-set statusline=[%n]\ %t\ \|\ %Y\ %{&encoding}\ %{&ff}\ \|\ Len\ %L\ \|\ Pos\ %03l:%03v\ %p%%\ \|\ Reg\ %{v:register}\ %=%<%F\ %m%r%h%q%w
 
 set exrc secure
 set autoread
@@ -61,9 +61,11 @@ set hidden
 set history=1000
 
 set autoread
+set re=0
 
 " Display
 set t_Co=256
+set t_ut=
 set title
 set novisualbell
 
@@ -85,7 +87,15 @@ syntax on
 set lazyredraw
 
 " Colors
-set background=dark
+set termguicolors
+" recommended: default, desert, torte, pablo, koehler, murphy
+color default
+map <F11> :color desert<CR>
+
+" Status
+set laststatus=2
+set statusline=[%n]\ %t\ \|\ %Y\ %{&encoding}\ %{&ff}\ \|\ Len\ %L\ \|\ Pos\ %03l:%03v\ %p%%\ %=%<%F\ %m%r%h%q%w
+highlight StatusLine ctermfg=lightgray ctermbg=black
 
 " Text format
 set termencoding=utf-8
@@ -129,6 +139,10 @@ set gdefault
 set diffopt=filler
 set diffopt+=horizontal
 set diffopt+=iwhite
+
+" Commands
+" reload .vimrc
+map <F12> :so $MYVIMRC<CR>
 
 " NERDTree
 map <F2> :NERDTreeToggle<CR>
