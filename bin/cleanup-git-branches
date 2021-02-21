@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+git_dir="$(git rev-parse --git-dir 2> /dev/null || true)"
+if [[ -z "$git_dir" ]]; then
+    echo "Current dir is not a git repository"
+    exit 1
+fi
+
+echo "Remove all branches except current and main"
+git br | grep -v '\*' | grep -vE '(dev)|(master)|(main)' | xargs -L1 git br -D

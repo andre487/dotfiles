@@ -24,7 +24,7 @@ export DISABLE_UPDATE_PROMPT=true
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
@@ -96,9 +96,9 @@ alias less="less -s -M +Gg"
 export BC_ENV_ARGS='-lq'
 
 #
-# Path
+# PATH
 #
-export PATH="/usr/local/sbin:/usr/local/bin:./node_modules/.bin:$HOME/node_modules/.bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/.dotfiles/bin:$PATH"
 
 #
 # Extra services
@@ -106,6 +106,15 @@ export PATH="/usr/local/sbin:/usr/local/bin:./node_modules/.bin:$HOME/node_modul
 if [[ -f "$HOME/.fzf.zsh" ]]; then
     source "$HOME/.fzf.zsh"
 fi
+
+if [[ -f "$HOME/.yql/shell_completion" ]]; then
+    source "$HOME/.yql/shell_completion"
+fi
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
+# The next line enables shell command completion for yc.
+if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
 
 if [[ -f '/usr/local/share/zsh-completions' ]]; then
     export fpath=(/usr/local/share/zsh-completions $fpath)
@@ -128,47 +137,4 @@ fi
 
 if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
     source "$NVM_DIR/nvm.sh"
-fi
-
-if [[ -f "$HOME/.yql/shell_completion" ]]; then
-    source "$HOME/.yql/shell_completion"
-fi
-
-# The next line updates PATH for Yandex Cloud CLI.
-if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
-
-# The next line enables shell command completion for yc.
-if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
-
-#
-# Define methods
-#
-disable_git_tracking() {
-    git_dir="$(git rev-parse --git-dir 2> /dev/null || true)"
-    if [[ -n "$git_dir" ]]; then
-        echo "Disable git tracking for $git_dir"
-        git config --add oh-my-zsh.hide-status 1
-        git config --add oh-my-zsh.hide-dirty 1
-    else
-        echo "Current dir is not a git repository"
-    fi
-}
-
-cleanup_git_branches() {
-    git br | grep -v '*' | grep -vE '(dev)|(master)|(main)' | xargs -L1 git br -D
-}
-
-cleanup_arc_branches() {
-    arc branch | grep -v '*' | grep -v trunk | xargs -L1 arc branch -D
-}
-
-setup_yandex_git() {
-    git config --local user.name "andre487"
-    git config --local user.email "andre487@yandex-team.ru"
-}
-
-if [[ "$(uname)" == "Darwin" ]]; then
-    export -f disable_git_tracking > /dev/null
-    export -f cleanup_git_branches > /dev/null
-    export -f setup_yandex_git > /dev/null
 fi

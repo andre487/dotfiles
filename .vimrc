@@ -133,6 +133,7 @@ set diffopt+=iwhite
 " NERDTree
 map <F2> :NERDTreeToggle<CR>
 map <F3> :BuffergatorToggle<CR>
+let NERDTreeShowHidden=1
 
 " Bunin
 map <C-B> :BuninEdit<CR>

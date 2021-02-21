@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+arc branch | grep -v '\*' | grep -v trunk | xargs -L1 arc branch -D

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+git_dir="$(git rev-parse --git-dir 2> /dev/null || true)"
+if [[ -z "$git_dir" ]]; then
+    echo "Current dir is not a git repository"
+    exit 1
+fi
+
+echo "Set Yandex ID to local git config"
+git config --local user.name "andre487"
+git config --local user.email "andre487@yandex-team.ru"

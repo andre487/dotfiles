@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+git_dir="$(git rev-parse --git-dir 2> /dev/null || true)"
+if [[ -z "$git_dir" ]]; then
+    echo "Current dir is not a git repository"
+    exit 1
+fi
+
+echo "Disable Oh my ZSH git functions for current repository"
+git config --add oh-my-zsh.hide-status 1
+git config --add oh-my-zsh.hide-dirty 1
