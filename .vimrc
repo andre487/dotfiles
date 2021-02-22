@@ -145,3 +145,11 @@ let NERDTreeShowHidden=1
 
 " Bunin
 map <C-B> :BuninEdit<CR>
+
+" Enable .vimrc.extra
+if has("user_commands")
+  let vimrc_extra=expand('~/.vimrc.extra')
+  if filereadable(vimrc_extra)
+      execute 'source '.vimrc_extra
+  endif
+endif
