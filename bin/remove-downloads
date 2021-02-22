@@ -22,7 +22,7 @@ for file in "${dwl_files[@]}"; do
 done
 
 args="${1:-}"
-if [[ "$args" =~ "--yes" ]] || [[ "$args" =~ "-y" ]]; then
+if [[ "$args" =~ "--yes" ]]; then
     echo "Removing is approved by argument"
 else
     read -p "Remove these items? [y/N]: " -n 1 -r
