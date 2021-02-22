@@ -49,4 +49,8 @@ if [[ ! -d "$ohmyzsh_dir" ]]; then
 fi
 
 # Install Vim plugins
-vim "$HOME" +PluginInstall +qall
+vim_setup_log=/tmp/vim-plugin-setup.log
+if ! vim +PluginInstall +qall 2> "$vim_setup_log"; then
+    echo "WARNING! Vim plugins setup error. See $vim_setup_log"
+    echo "Run vim and :PluginInstall"
+fi
