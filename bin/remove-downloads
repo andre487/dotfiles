@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+dwl_dir="$HOME/Downloads"
+if [[ ! -d "$dwl_dir" ]]; then
+    echo "There is no Downloads dir, so exit"
+    exit 1
+fi
+
+IFS=$'\n' read -r -d '' -a dwl_files < \
+    <(find "$dwl_dir" -name '.DS_Store' -prune -o -depth 1 -exec basename {} \; && printf '\0')
+
+item_count="${#dwl_files[@]}"
+if [[ "$item_count" == 0 ]]; then
+    echo "Downloads dir is empty"
+    exit 0
+fi
+
+echo "There are $item_count items found:"
+for file in "${dwl_files[@]}"; do
+    echo " * $file"
+done
+
+args="${1:-}"
+if [[ "$args" =~ "--yes" ]] || [[ "$args" =~ "-y" ]]; then
+    echo "Removing is approved by argument"
+else
+    read -p "Remove these items? [y/N]: " -n 1 -r
+    echo
+
+    need_remove="${REPLY:-n}"
+    if [[ "$need_remove" != y ]] && [[ "$need_remove" != Y ]]; then
+        exit 0
+    fi
+fi
+
+for file in "${dwl_files[@]}"; do
+    rm -rf "$dwl_dir/$file"
+done
+
+echo "Items removed: $item_count"
