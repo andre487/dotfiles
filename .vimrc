@@ -30,13 +30,8 @@ Plugin 'bronson/vim-trailing-whitespace' " Highlight trailing whitespaces, https
 Plugin 'mayton/bunin.vim'                " Edit bundle strings in buffer (for example borschik:include), https://github.com/mayton/bunin.vim
 
 " syntax
-Plugin 'othree/yajs.vim'               " JavaScript, https://github.com/othree/yajs.vim
-Plugin 'HerringtonDarkholme/yats.vim'  " TypeScript, https://github.com/HerringtonDarkholme/yats.vim
-Plugin 'maxmellon/vim-jsx-pretty'      " JSX/TSX, https://github.com/MaxMEllon/vim-jsx-pretty
-Plugin 'numirias/semshi'               " Python, https://github.com/numirias/semshi
-Plugin 'Vimjas/vim-python-pep8-indent' " PEP8 Indents, https://github.com/Vimjas/vim-python-pep8-indent
-Plugin 'gregsexton/MatchTag'           " Highlight matching HTML tags, https://github.com/gregsexton/MatchTag
-Plugin 'tpope/vim-commentary'          " Comment command, https://github.com/tpope/vim-commentary
+Plugin 'HerringtonDarkholme/yats.vim' " TypeScript, https://github.com/HerringtonDarkholme/yats.vim
+Plugin 'tpope/vim-commentary'         " Comment command, https://github.com/tpope/vim-commentary
 
 call vundle#end()
 filetype plugin indent on
