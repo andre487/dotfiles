@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$HOME"
 
 configs_repo=https://github.com/andre487/dotfiles.git
 push_remote=git@github.com:andre487/dotfiles.git
