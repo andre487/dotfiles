@@ -3,6 +3,7 @@ set -euo pipefail
 cd ~
 
 configs_repo=https://github.com/andre487/dotfiles.git
+push_remote=git@github.com:andre487/dotfiles.git
 configs_dir=.dotfiles
 
 # Checkout configs
@@ -16,6 +17,8 @@ if [[ -d "$configs_dir" ]]; then
     cd - > /dev/null
 else
     git clone "$configs_repo" "$configs_dir"
+    cd "$configs_dir"
+    git remote add upstream "$push_remote"
 fi
 
 # Create config files
