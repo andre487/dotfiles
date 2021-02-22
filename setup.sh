@@ -42,7 +42,7 @@ fi
 ohmyzsh_dir="$HOME/.oh-my-zsh"
 if [[ ! -d "$ohmyzsh_dir" ]]; then
     export KEEP_ZSHRC=yes
-    if [[ ! sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended ]]; then
+    if ! sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" "" --unattended; then
         echo "WARNING! Oh my ZSH is not installed"
     fi
 fi
