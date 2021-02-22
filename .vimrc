@@ -87,7 +87,6 @@ syntax on
 set lazyredraw
 
 " Colors
-set termguicolors
 " recommended: default, desert, torte, pablo, koehler, murphy
 color default
 map <F11> :color desert<CR>
