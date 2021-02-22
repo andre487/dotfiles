@@ -1,4 +1,15 @@
 #!/usr/bin/env osascript
 tell application "Finder"
-    empty the trash
+    try
+        empty the trash
+    on error errorMessage number errorNumber
+        -- -128 - User canceled: https://clck.ru/TPwuj
+        -- It may be not always about empty trash but there is no detalization
+        if errorNumber = -128 then
+            log "Trash is empty"
+        else
+            log "Finder returns an error " & errorNumber & ": " & errorMessage
+            error
+        end if
+    end try
 end tell
