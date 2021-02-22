@@ -27,7 +27,6 @@ Plugin 'jeetsukumaran/vim-buffergator' " Work with buffers as tabs, https://gith
 
 " text
 Plugin 'bronson/vim-trailing-whitespace' " Highlight trailing whitespaces, https://github.com/bronson/vim-trailing-whitespace
-Plugin 'mayton/bunin.vim'                " Edit bundle strings in buffer (for example borschik:include), https://github.com/mayton/bunin.vim
 
 " syntax
 Plugin 'HerringtonDarkholme/yats.vim' " TypeScript, https://github.com/HerringtonDarkholme/yats.vim
@@ -136,15 +135,10 @@ set diffopt+=iwhite
 
 " Commands
 " reload .vimrc
-map <F12> :so $MYVIMRC<CR>
-
-" NERDTree
 map <F2> :NERDTreeToggle<CR>
 map <F3> :BuffergatorToggle<CR>
+map <F12> :so $MYVIMRC<CR>
 let NERDTreeShowHidden=1
-
-" Bunin
-map <C-B> :BuninEdit<CR>
 
 " Enable .vimrc.extra
 if has("user_commands")
