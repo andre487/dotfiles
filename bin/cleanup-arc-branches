@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if ! arc root; then
+if ! arc root >/dev/null; then
     echo "This command should be ran from arcadia directory"
     exit 1
 fi
