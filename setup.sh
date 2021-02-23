@@ -19,7 +19,7 @@ else
     cd "$configs_dir"
     git remote add upstream "$push_remote"
 fi
-cd - > /dev/null
+cd - >/dev/null
 
 # Create config files
 IFS=$'\n' read -r -d '' -a config_files < <(find "$configs_dir" -maxdepth 1 -type f -name "\.*" -exec basename {} \; && printf '\0')
@@ -36,7 +36,10 @@ done
 fzf_dir="$HOME/.fzf"
 if [[ ! -d "$fzf_dir" ]]; then
     git clone --depth 1 https://github.com/junegunn/fzf.git "$fzf_dir"
-    "$fzf_dir/install" --key-bindings --completion --no-update-rc
+    if ! "$fzf_dir/install" --key-bindings --completion --no-update-rc; then
+        echo "WARNING! Fzf is not installed properly"
+        echo "Please run '$fzf_dir/install --key-bindings --completion --no-update-rc' and fix errors"
+    fi
 fi
 
 # Install Oh my ZSH
@@ -51,7 +54,7 @@ fi
 
 # Install Vim plugins
 vim_setup_log=/tmp/vim-plugin-setup.log
-if ! vim +PluginInstall +qall 2> "$vim_setup_log"; then
+if ! vim +PluginInstall +qall >/dev/null 2>"$vim_setup_log"; then
     echo "WARNING! Vim plugins setup error. See $vim_setup_log"
     echo "Run vim and :PluginInstall"
 fi
