@@ -21,10 +21,8 @@ for file in "${dwl_files[@]}"; do
     echo " * $file"
 done
 
-args="${1:-}"
-if [[ "$args" =~ "--yes" ]]; then
-    echo "Removing is approved by argument"
-else
+arg="${1:-}"
+if [[ "$arg" != "--yes" ]]; then
     read -p "Remove these downloads items? [y/N]: " -n 1 -r
     echo
 
