@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-git_dir="$(git rev-parse --git-dir 2> /dev/null || true)"
+git_dir="$(git rev-parse --git-dir 2>/dev/null || true)"
 if [[ -z "$git_dir" ]]; then
     echo "Current dir is not a git repository"
     exit 1

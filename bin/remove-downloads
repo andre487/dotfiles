@@ -35,7 +35,7 @@ else
 fi
 
 for file in "${dwl_files[@]}"; do
-    rm -rf "$dwl_dir/$file"
+    rm -rf "${dwl_dir:?}/$file"
 done
 
 echo "Downloads items removed: $item_count"
