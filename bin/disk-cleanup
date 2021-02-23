@@ -34,7 +34,7 @@ fi
 
 if [[ "$(uname)" == Darwin ]]; then
     echo "Removing downloads..."
-    if ! "$cur_dir/remove-downloads"; then
+    if ! "$cur_dir/remove-downloads" --yes; then
         echo "WARNING! Downloads remove failed"
     fi
 
