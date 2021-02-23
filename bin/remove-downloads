@@ -16,7 +16,7 @@ if [[ "$item_count" == 0 ]]; then
     exit 0
 fi
 
-echo "There are $item_count items found:"
+echo "There are $item_count downloads items found:"
 for file in "${dwl_files[@]}"; do
     echo " * $file"
 done
@@ -25,7 +25,7 @@ args="${1:-}"
 if [[ "$args" =~ "--yes" ]]; then
     echo "Removing is approved by argument"
 else
-    read -p "Remove these items? [y/N]: " -n 1 -r
+    read -p "Remove these downloads items? [y/N]: " -n 1 -r
     echo
 
     need_remove="${REPLY:-n}"
@@ -38,4 +38,4 @@ for file in "${dwl_files[@]}"; do
     rm -rf "$dwl_dir/$file"
 done
 
-echo "Items removed: $item_count"
+echo "Downloads items removed: $item_count"

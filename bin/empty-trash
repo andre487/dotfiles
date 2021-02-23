@@ -2,6 +2,7 @@
 tell application "Finder"
     try
         empty the trash
+        log "Trash will be empty soon"
     on error errorMessage number errorNumber
         -- -128 - User canceled: https://clck.ru/TPwuj
         -- It may be not always about empty trash but there is no detalization

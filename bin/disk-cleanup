@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cur_dir="$(cd "$(dirname "$0")" && pwd)"
+
+if which brew &>/dev/null; then
+    echo "Cleaning brew cache..."
+    if ! brew cleanup; then
+        echo "WARNING! Brew cache was not cleaned"
+    fi
+fi
+
+if which apt-get &>/dev/null; then
+    echo "Cleaning apt cache..."
+    if ! sudo apt-get clean; then
+        echo "WARNING! Apt cache was not cleaned"
+    fi
+fi
+
+if which npm &>/dev/null; then
+    echo "Cleaning npm cache..."
+    if ! npm cache clean --force; then
+        echo "WARNING! Npm cache was not cleaned"
+    fi
+fi
+
+if [[ -d "$HOME/.cache/pip" ]]; then
+    echo "Cleaning pip cache..."
+    if rm -rf "$HOME/.cache/pip"; then
+        echo "Pip cache cleaned"
+    else
+        echo "WARNING! Pip cache was not cleaned"
+    fi
+fi
+
+if [[ "$(uname)" == Darwin ]]; then
+    echo "Removing downloads..."
+    if ! "$cur_dir/remove-downloads"; then
+        echo "WARNING! Downloads remove failed"
+    fi
+
+    echo "Removing trash..."
+    if ! "$cur_dir/empty-trash"; then
+        echo "WARNING! Trash was not removed"
+    fi
+fi
