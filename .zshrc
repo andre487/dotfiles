@@ -111,11 +111,6 @@ if [[ -f "$HOME/.yql/shell_completion" ]]; then
     source "$HOME/.yql/shell_completion"
 fi
 
-# The next line updates PATH for Yandex Cloud CLI.
-if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
-# The next line enables shell command completion for yc.
-if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
-
 if [[ -f '/usr/local/share/zsh-completions' ]]; then
     export fpath=(/usr/local/share/zsh-completions $fpath)
 fi
@@ -123,28 +118,34 @@ fi
 if [[ -d ~/.zfunc ]]; then
     fpath=(~/.zfunc $fpath)
 fi
-compinit
 
 #
 # NVM must be after any PATH modifications
 #
-export NVM_DIR="$HOME/.nvm"
-if [[ ! -d "$NVM_DIR" ]]; then
-    export NVM_DIR="/usr/local/opt/nvm"
-    if [[ ! -d "$NVM_DIR" ]]; then
-        export NVM_DIR=
-    fi
-fi
+# export NVM_DIR="$HOME/.nvm"
+# if [[ ! -d "$NVM_DIR" ]]; then
+#     export NVM_DIR="/usr/local/opt/nvm"
+#     if [[ ! -d "$NVM_DIR" ]]; then
+#         export NVM_DIR=
+#     fi
+# fi
+#
+# if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
+#     source "$NVM_DIR/nvm.sh"
+# fi
 
-if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
-    source "$NVM_DIR/nvm.sh"
+#
+# FNM
+#
+if which fnm >/dev/null; then
+    eval "$(fnm env)"
 fi
 
 # The next line updates PATH for Yandex Cloud CLI.
 if [ -f '/Users/andre487/yandex-cloud/path.bash.inc' ]; then source '/Users/andre487/yandex-cloud/path.bash.inc'; fi
 
 # The next line enables shell command completion for yc.
-if [ -f '/Users/andre487/yandex-cloud/completion.zsh.inc' ]; then source '/Users/andre487/yandex-cloud/completion.zsh.inc'; fi
+# if [ -f '/Users/andre487/yandex-cloud/completion.zsh.inc' ]; then source '/Users/andre487/yandex-cloud/completion.zsh.inc'; fi
 
 # Syntax highlight
 if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
