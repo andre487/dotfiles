@@ -137,6 +137,10 @@ fi
 #
 # FNM
 #
+if [[ -d "$HOME/.fnm" ]]; then
+    export PATH="$HOME/.fnm:$PATH"
+fi
+
 if which fnm >/dev/null; then
     eval "$(fnm env)"
 fi
@@ -152,3 +156,7 @@ if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]
     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
+
+# fnm
+export PATH=/home/andre487/.fnm:$PATH
+eval "`fnm env`"
