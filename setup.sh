@@ -62,7 +62,7 @@ fi
 # Install syntax highlight
 platform_name="$(uname)"
 if [[ "$platform_name" == Linux ]]; then
-    echo "To install ZSH syntax highlight run 'sudo apt install --yes zsh-syntax-highlighting'"
+    echo "To install ZSH syntax highlight check package from here: https://clck.ru/Ufg9g"
 else
     if [[ "$platform_name" == Darwin ]] && which brew >/dev/null; then
         brew install zsh-syntax-highlighting
