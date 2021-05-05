@@ -123,6 +123,7 @@ fi
 if [[ -d ~/.zfunc ]]; then
     fpath=(~/.zfunc $fpath)
 fi
+compinit
 
 #
 # NVM must be after any PATH modifications
@@ -137,4 +138,16 @@ fi
 
 if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
     source "$NVM_DIR/nvm.sh"
+fi
+
+# The next line updates PATH for Yandex Cloud CLI.
+if [ -f '/Users/andre487/yandex-cloud/path.bash.inc' ]; then source '/Users/andre487/yandex-cloud/path.bash.inc'; fi
+
+# The next line enables shell command completion for yc.
+if [ -f '/Users/andre487/yandex-cloud/completion.zsh.inc' ]; then source '/Users/andre487/yandex-cloud/completion.zsh.inc'; fi
+
+# Syntax highlight
+if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+    export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
