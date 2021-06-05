@@ -16,6 +16,7 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to change how often to auto-update (in days).
 export UPDATE_ZSH_DAYS=30
 export DISABLE_UPDATE_PROMPT=true
+export DISABLE_MAGIC_FUNCTIONS=true
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -152,10 +153,10 @@ if [ -f '/Users/andre487/yandex-cloud/path.bash.inc' ]; then source '/Users/andr
 # if [ -f '/Users/andre487/yandex-cloud/completion.zsh.inc' ]; then source '/Users/andre487/yandex-cloud/completion.zsh.inc'; fi
 
 # Syntax highlight
-if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-    export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
-    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+# if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+#     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
+#     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# fi
 
 # fnm
 export PATH=/home/andre487/.fnm:$PATH
