@@ -142,7 +142,7 @@ if [[ -d "$HOME/.fnm" ]]; then
     export PATH="$HOME/.fnm:$PATH"
 fi
 
-if which fnm >/dev/null; then
+if which fnm &>/dev/null; then
     eval "$(fnm env)"
 fi
 
