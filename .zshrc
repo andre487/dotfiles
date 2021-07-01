@@ -159,5 +159,7 @@ if [ -f '/Users/andre487/yandex-cloud/path.bash.inc' ]; then source '/Users/andr
 # fi
 
 # fnm
-export PATH=/home/andre487/.fnm:$PATH
-eval "`fnm env`"
+if which fnm &>/dev/null; then
+    export PATH=/home/andre487/.fnm:$PATH
+    eval "`fnm env`"
+fi
