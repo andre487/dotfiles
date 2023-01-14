@@ -150,7 +150,7 @@ fi
 if [ -f '/Users/andre487/yandex-cloud/path.bash.inc' ]; then source '/Users/andre487/yandex-cloud/path.bash.inc'; fi
 
 # The next line enables shell command completion for yc.
-# if [ -f '/Users/andre487/yandex-cloud/completion.zsh.inc' ]; then source '/Users/andre487/yandex-cloud/completion.zsh.inc'; fi
+if [ -f '/Users/andre487/yandex-cloud/completion.zsh.inc' ]; then source '/Users/andre487/yandex-cloud/completion.zsh.inc'; fi
 
 # Syntax highlight
 # if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
@@ -158,8 +158,3 @@ if [ -f '/Users/andre487/yandex-cloud/path.bash.inc' ]; then source '/Users/andr
 #     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # fi
 
-# fnm
-if which fnm &>/dev/null; then
-    export PATH=/home/andre487/.fnm:$PATH
-    eval "`fnm env`"
-fi
