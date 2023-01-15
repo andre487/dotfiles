@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-set -eufo pipefail
-
-eval $(tmux show-env -s |grep '^SSH_')
-ssh-add -l

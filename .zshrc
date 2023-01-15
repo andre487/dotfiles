@@ -102,6 +102,14 @@ export BC_ENV_ARGS='-lq'
 export PATH="/usr/local/sbin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/.dotfiles/bin:$PATH"
 
 #
+# Functions
+#
+fix_tmux_ssh_agent() {
+    eval $(tmux show-env -s |grep '^SSH_')
+    ssh-add -l
+}
+
+#
 # Extra services
 #
 if [[ -f "$HOME/.fzf.zsh" ]]; then
