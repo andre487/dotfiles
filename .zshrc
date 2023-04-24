@@ -131,17 +131,18 @@ fi
 #
 # NVM must be after any PATH modifications
 #
-# export NVM_DIR="$HOME/.nvm"
-# if [[ ! -d "$NVM_DIR" ]]; then
-#     export NVM_DIR="/usr/local/opt/nvm"
-#     if [[ ! -d "$NVM_DIR" ]]; then
-#         export NVM_DIR=
-#     fi
-# fi
-#
-# if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
-#     source "$NVM_DIR/nvm.sh"
-# fi
+export NVM_DIR="$HOME/.nvm"
+if [[ ! -d "$NVM_DIR" ]]; then
+    export NVM_DIR="/usr/local/opt/nvm"
+    if [[ ! -d "$NVM_DIR" ]]; then
+        export NVM_DIR=
+    fi
+fi
+
+if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
+    source "$NVM_DIR/nvm.sh"
+    source "$NVM_DIR/bash_completion"
+fi
 
 #
 # FNM
