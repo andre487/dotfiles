@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+sudo systemctl restart systemd-resolved
+systemd-resolve --flush-caches
