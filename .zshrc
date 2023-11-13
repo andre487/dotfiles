@@ -151,6 +151,10 @@ if [[ -d "$HOME/.fnm" ]]; then
     export PATH="$HOME/.fnm:$PATH"
 fi
 
+if [[ -d "$HOME/.local/share/fnm" ]]; then
+    export PATH="$HOME/.local/share/fnm:$PATH"
+fi
+
 if which fnm &>/dev/null; then
     eval "$(fnm env)"
 fi
@@ -166,4 +170,3 @@ if [ -f '/Users/andre487/yandex-cloud/completion.zsh.inc' ]; then source '/Users
 #     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
 #     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # fi
-
