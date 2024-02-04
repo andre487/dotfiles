@@ -1,0 +1,49 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 120
+tab_width = 4
+trim_trailing_whitespace = true
+ij_continuation_indent_size = 8
+ij_formatter_off_tag = @formatter:off
+ij_formatter_on_tag = @formatter:on
+ij_formatter_tags_enabled = true
+ij_keep_blank_lines_in_code = 2
+ij_keep_indents_on_empty_lines = false
+ij_keep_line_breaks = true
+ij_space_before_comma = false
+ij_smart_tabs = false
+ij_visual_guides = 80,120
+ij_wrap_on_typing = false
+
+[*.proto]
+indent_size = 2
+tab_width = 2
+ij_continuation_indent_size = 4
+
+[{*.cpuprofile,*.har,*.jsb2,*.jsb3,*.json,*.jsonc,*.jsonl,*.postman_collection,*.postman_collection.json,*.postman_environment,*.postman_environment.json,.babelrc,.borschik,.eslintrc,.prettierrc,.stylelintrc,.yaspellerrc,bowerrc,jest.config}]
+indent_size = 2
+tab_width = 2
+ij_continuation_indent_size = 4
+ij_json_keep_blank_lines_in_code = 1
+
+[{*.go,*.go2}]
+indent_style = tab
+
+[{*.mk,GNUmakefile,makefile}]
+indent_style = tab
+
+[{*.pb,*.textproto,*.txtpb}]
+indent_size = 2
+tab_width = 2
+ij_continuation_indent_size = 4
+
+[{*.yaml,*.yml,.repo_config}]
+indent_size = 2
+tab_width = 2
+ij_continuation_indent_size = 4
