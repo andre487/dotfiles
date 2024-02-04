@@ -147,6 +147,12 @@ fix_tmux_ssh_agent() {
 }
 
 #
+# Aliases
+#
+alias nots='ya tool nots'
+alias p=pnpm
+
+#
 # NVM and FNM must be after any PATH modifications
 #
 if [[ -d "$HOME/.fnm" ]]; then
