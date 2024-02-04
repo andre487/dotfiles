@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -e
+defaults write com.apple.dock autohide-delay -float 0.5
+killall Dock
