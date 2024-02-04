@@ -43,11 +43,48 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+#
+# FZF
+#
+if [[ -f "$HOME/.fzf.zsh" ]]; then
+    source "$HOME/.fzf.zsh"
+fi
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=()
+plugins=(
+    encode64
+    fnm
+    fzf
+    gitfast
+    golang
+    grunt
+    gulp
+    invoke
+    iterm2
+    last-working-dir
+    node
+    npm
+    pip
+    pipenv
+    poetry
+    redis-cli
+    urltools
+    zsh-interactive-cd
+    zsh-navigation-tools
+)
+
+case "$(uname)" in
+    Darwin)
+        plugins+=(macos)
+        ;;
+    Linux)
+        plugins+=(ubuntu)
+        ;;
+esac
+
 
 #
 # User defined .zshrc
@@ -110,42 +147,7 @@ fix_tmux_ssh_agent() {
 }
 
 #
-# Extra services
-#
-if [[ -f "$HOME/.fzf.zsh" ]]; then
-    source "$HOME/.fzf.zsh"
-fi
-
-if [[ -f "$HOME/.yql/shell_completion" ]]; then
-    source "$HOME/.yql/shell_completion"
-fi
-
-if [[ -f '/usr/local/share/zsh-completions' ]]; then
-    export fpath=(/usr/local/share/zsh-completions $fpath)
-fi
-
-if [[ -d ~/.zfunc ]]; then
-    fpath=(~/.zfunc $fpath)
-fi
-
-#
-# NVM must be after any PATH modifications
-#
-# export NVM_DIR="$HOME/.nvm"
-# if [[ ! -d "$NVM_DIR" ]]; then
-#     export NVM_DIR="/usr/local/opt/nvm"
-#     if [[ ! -d "$NVM_DIR" ]]; then
-#         export NVM_DIR=
-#     fi
-# fi
-
-# if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
-#     source "$NVM_DIR/nvm.sh"
-#     source "$NVM_DIR/bash_completion"
-# fi
-
-#
-# FNM
+# NVM and FNM must be after any PATH modifications
 #
 if [[ -d "$HOME/.fnm" ]]; then
     export PATH="$HOME/.fnm:$PATH"
@@ -159,14 +161,38 @@ if which fnm &>/dev/null; then
     eval "$(fnm env)"
 fi
 
+if [[ -z "$FNM_DIR" ]]; then
+    export NVM_DIR="$HOME/.nvm"
+    if [[ ! -d "$NVM_DIR" ]]; then
+        export NVM_DIR="/usr/local/opt/nvm"
+        if [[ ! -d "$NVM_DIR" ]]; then
+            export NVM_DIR=
+        fi
+    fi
+
+    if [[ -n "$NVM_DIR" ]] && [[ -s "$NVM_DIR/nvm.sh" ]]; then
+        source "$NVM_DIR/nvm.sh"
+        source "$NVM_DIR/bash_completion"
+    fi
+fi
+
+#
+# Extra services
+#
+if [[ -f "$HOME/.arc/completion.sh" ]]; then
+    source "$HOME/.arc/completion.sh"
+fi
+
+if [[ -f "$HOME/.yql/shell_completion" ]]; then
+    source "$HOME/.yql/shell_completion"
+fi
+
+if [[ -d ~/.zfunc ]]; then
+    fpath=(~/.zfunc $fpath)
+fi
+
 # The next line updates PATH for Yandex Cloud CLI.
-if [ -f '/Users/andre487/yandex-cloud/path.bash.inc' ]; then source '/Users/andre487/yandex-cloud/path.bash.inc'; fi
+if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/path.bash.inc"; fi
 
 # The next line enables shell command completion for yc.
-if [ -f '/Users/andre487/yandex-cloud/completion.zsh.inc' ]; then source '/Users/andre487/yandex-cloud/completion.zsh.inc'; fi
-
-# Syntax highlight
-# if [[ -f /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
-#     export ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/usr/local/share/zsh-syntax-highlighting/highlighters
-#     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# fi
+if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
