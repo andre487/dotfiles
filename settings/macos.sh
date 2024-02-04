@@ -102,7 +102,7 @@ defaults write com.apple.dock tilesize -int 36
 defaults write com.apple.dock autohide -bool true
 
 # Show after delay
-defaults write com.apple.dock autohide-delay -float 1
+defaults write com.apple.dock autohide-delay -float 0.5
 
 # Remove the animation when hiding/showing the Dock (actually, make it fast. If you want to remove, use 0)
 defaults write com.apple.dock autohide-time-modifier -float 0.25
