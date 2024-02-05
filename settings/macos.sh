@@ -44,7 +44,7 @@ defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
-# Set dask theme
+# Set dark theme
 "$sudo_cmd" defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
 
 # Maximize windows on double clicking them:
@@ -58,10 +58,6 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-
-# Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 2
-defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Show language menu in the top right corner of the boot screen
 "$sudo_cmd" defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
@@ -96,10 +92,6 @@ defaults write com.apple.dock static-only -bool true
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
-
-# Don’t group windows by application in Mission Control
-# (i.e. use the old Exposé behavior instead)
-defaults write com.apple.dock expose-group-by-app -bool false
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
@@ -237,12 +229,10 @@ defaults write com.apple.mail MinimumHTMLFontSize 16
 
 # Restarting apps:
 echo 'Restarting apps...'
+
 apps=(Finder Dock Mail Safari SystemUIServer)
 for app in "${apps[@]}"; do
-    echo -n "$app "
-	if killall "$app"; then
-        echo
-    fi
+	killall "$app" &>/dev/null || true
 done
 
 echo 'Dene!'
