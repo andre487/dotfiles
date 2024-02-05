@@ -26,10 +26,6 @@ if which p-sudo &>/dev/null; then
 fi
 
 # === General ===
-# Setup remaining battery indicator
-defaults write com.apple.menuextra.battery ShowPercent -string "YES"
-defaults write com.apple.menuextra.battery ShowTime -string "YES"
-
 # Always show scrollbars
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
 # Possible values: `WhenScrolling`, `Automatic` and `Always`
@@ -64,17 +60,8 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
-
-# Disable “natural” (Lion-style) scrolling
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
-# Set language and text formats
-defaults write NSGlobalDomain AppleLanguages -array "en" "ru"
-defaults write NSGlobalDomain AppleLocale -string "ru_RU@currency=RUR"
-defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-defaults write NSGlobalDomain AppleMetricUnits -bool true
 
 # Show language menu in the top right corner of the boot screen
 "$sudo_cmd" defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
@@ -92,9 +79,6 @@ defaults write com.apple.finder ShowMountedServersOnDesktop -bool false
 defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
 # === Dock ===
-# Enable the 2D Dock
-defaults write com.apple.dock no-glass -bool true
-
 # Set the icon size of Dock items to 36 pixels
 defaults write com.apple.dock tilesize -int 36
 
@@ -102,7 +86,7 @@ defaults write com.apple.dock tilesize -int 36
 defaults write com.apple.dock autohide -bool true
 
 # Show after delay
-defaults write com.apple.dock autohide-delay -float 0.5
+defaults write com.apple.dock autohide-delay -float 0.1
 
 # Remove the animation when hiding/showing the Dock (actually, make it fast. If you want to remove, use 0)
 defaults write com.apple.dock autohide-time-modifier -float 0.25
@@ -253,8 +237,12 @@ defaults write com.apple.mail MinimumHTMLFontSize 16
 
 # Restarting apps:
 echo 'Restarting apps...'
-for app in Finder Dock Mail Safari SystemUIServer; do
-	killall "$app" &> /dev/null
+apps=(Finder Dock Mail Safari SystemUIServer)
+for app in "${apps[@]}"; do
+    echo -n "$app "
+	if killall "$app"; then
+        echo
+    fi
 done
 
-echo 'Done!'
+echo 'Dene!'
