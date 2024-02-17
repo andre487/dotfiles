@@ -40,6 +40,8 @@ scriptencoding utf-8
 set encoding=utf-8
 
 " General
+let is_in_tmux=exists('$TMUX') && trim(system('tmux show-option -gv mouse')) == 'on'
+
 set ttyfast
 set nobackup
 set noswapfile
@@ -57,8 +59,11 @@ set history=1000
 set autoread
 set re=0
 
-if exists('$TMUX') && trim(system('tmux show-option -gv mouse')) == 'on'
+" Mouse
+if is_in_tmux
     set mouse=a
+else
+    set mouse=
 endif
 
 " Display
@@ -130,6 +135,7 @@ set smartcase
 set incsearch
 set hlsearch
 set gdefault
+map <F4> :noh<CR>
 
 " Diff
 set diffopt=filler
