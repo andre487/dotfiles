@@ -57,6 +57,10 @@ set history=1000
 set autoread
 set re=0
 
+if exists('$TMUX') && trim(system('tmux show-option -gv mouse')) == 'on'
+    set mouse=a
+endif
+
 " Display
 set t_Co=256
 set t_ut=
