@@ -132,7 +132,7 @@ export EDITOR="vim"
 # Settings
 #
 export BC_ENV_ARGS='-lq'
-export LESS="$LESS --IGNORE-CASE --RAW-CONTROL-CHARS --mouse --use-color --squeeze-blank-lines +Gg" # +Gg - highlight all searches
+export LESS="$LESS --IGNORE-CASE --RAW-CONTROL-CHARS --mouse --squeeze-blank-lines +Gg" # +Gg - highlight all searches
 
 #
 # PATH
