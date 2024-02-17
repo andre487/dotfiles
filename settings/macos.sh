@@ -113,7 +113,7 @@ defaults write com.apple.finder ShowStatusBar -bool true
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 # Allow quitting Finder via ⌘ + Q; doing so will also hide desktop icons
-defaults write com.apple.finder QuitMenuItem -bool true
+# defaults write com.apple.finder QuitMenuItem -bool true
 
 # Avoid creating .DS_Store files on network or USB volumes
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
