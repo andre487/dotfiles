@@ -126,12 +126,13 @@ export EDITOR="vim"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias less="less -s -M +Gg"
+# alias less="less -s -M +Gg"
 
 #
 # Settings
 #
 export BC_ENV_ARGS='-lq'
+export LESS="$LESS --IGNORE-CASE --RAW-CONTROL-CHARS --MOUSE --use-color --squeeze-blank-lines"
 
 #
 # PATH
