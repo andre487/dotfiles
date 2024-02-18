@@ -40,8 +40,6 @@ scriptencoding utf-8
 set encoding=utf-8
 
 " General
-let is_in_tmux=exists('$TMUX') && trim(system('tmux show-option -gv mouse')) == 'on'
-
 set ttyfast
 set nobackup
 set noswapfile
@@ -60,7 +58,8 @@ set autoread
 set re=0
 
 " Mouse
-if is_in_tmux
+let does_tmux_mouse_enabled=exists('$TMUX') && trim(system('tmux show-option -gv mouse')) == 'on'
+if does_tmux_mouse_enabled
     set mouse=a
 else
     set mouse=
