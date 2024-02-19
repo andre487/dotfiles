@@ -1,3 +1,9 @@
+#
+# Some custom vars
+#
+_zshrc_platform="$(uname)"
+_zshrc_arch="$(uname -m)"
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -8,7 +14,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="false"
+CASE_SENSITIVE="false"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -44,11 +50,13 @@ COMPLETION_WAITING_DOTS="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 #
-# FZF
+# Autoloading functions
+# https://zsh.sourceforge.io/Doc/Release/Functions.html
 #
-if [[ -f "$HOME/.fzf.zsh" ]]; then
-    source "$HOME/.fzf.zsh"
+if [[ ! -d ~/.zfunc ]]; then
+    mkdir -m755 ~/.zfunc
 fi
+fpath=(~/.zfunc $fpath)
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -56,27 +64,20 @@ fi
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     encode64
-    fnm
     fzf
     gitfast
-    golang
     grunt
     gulp
     invoke
     iterm2
     last-working-dir
-    node
-    npm
-    pip
-    pipenv
-    poetry
     redis-cli
     urltools
     zsh-interactive-cd
     zsh-navigation-tools
 )
 
-case "$(uname)" in
+case "$_zshrc_platform" in
     Darwin)
         plugins+=(macos)
         ;;
@@ -84,7 +85,6 @@ case "$(uname)" in
         plugins+=(ubuntu)
         ;;
 esac
-
 
 #
 # User defined .zshrc
@@ -102,48 +102,39 @@ else
     echo "Oh my zsh not found"
 fi
 
-# User configuration
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LANG=en_US.UTF-8
-export LC_ALL="$LANG"
-
-# Preferred editor for local and remote sessions
-export EDITOR="vim"
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-# alias less="less -s -M +Gg"
+# FZF
+#
+if ! which fzf &>/dev/null && [[ -f "$HOME/.fzf.zsh" ]]; then
+    source "$HOME/.fzf.zsh"
+elif which fzf-history-widget &>/dev/null; then
+    bindkey '^R' fzf-history-widget
+fi
 
 #
 # Settings
 #
+export LANG=en_US.UTF-8
+export LC_ALL="$LANG"
+
+export EDITOR="vim"
 export BC_ENV_ARGS='-lq'
-export LESS="$LESS --IGNORE-CASE --RAW-CONTROL-CHARS --mouse --squeeze-blank-lines +Gg" # +Gg - highlight all searches
+export LESS="$LESS --IGNORE-CASE --RAW-CONTROL-CHARS --squeeze-blank-lines +Gg" # +Gg - highlight all searches
 
 #
 # PATH
 #
-export PATH="/usr/local/sbin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/.dotfiles/bin:$PATH"
+export PATH="/usr/local/sbin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/.dotfiles/bin:$PATH:$HOME/bin:/Applications/IntelliJ IDEA.app/Contents/MacOS:/Applications/CLion.app/Contents/MacOS"
 
 #
 # Functions
 #
-fix_tmux_ssh_agent() {
-    eval $(tmux show-env -s |grep '^SSH_')
+tt-fix-ssh-agent() {
+    if ! which tmux &>/dev/null || [[ -z "$TMUX"  ]]; then
+        echo 'Not in TMUX session'
+        return 0
+    fi
+    eval $(tmux show-env -s | grep '^SSH_')
     ssh-add -l
 }
 
@@ -184,18 +175,32 @@ if [[ -z "$FNM_DIR" ]]; then
 fi
 
 #
+# Some crutches
+#
+# Fix Puppeteer ARM installation issue: https://github.com/puppeteer/puppeteer/issues/7740
+if [[ "$_zshrc_platform" == Darwin ]] && [[ "$_zshrc_arch" == arm64 ]]; then
+    export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
+    export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+fi
+
+#
 # Extra services
 #
-if [[ -f "$HOME/.arc/completion.sh" ]]; then
-    source "$HOME/.arc/completion.sh"
+if which skotty &>/dev/null; then
+    eval "$(skotty ssh env)"
 fi
 
-if [[ -f "$HOME/.yql/shell_completion" ]]; then
-    source "$HOME/.yql/shell_completion"
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-if [[ -d ~/.zfunc ]]; then
-    fpath=(~/.zfunc $fpath)
+if which arc &>/dev/null; then
+    if [[ ! -f "$HOME/.zfunc/_arc" ]]; then
+        arc completion zsh >"$HOME/.zfunc/_arc"
+        source "$HOME/.zfunc/_arc"
+        compinit
+    fi
 fi
 
 # The next line updates PATH for Yandex Cloud CLI.
@@ -203,3 +208,8 @@ if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/pa
 
 # The next line enables shell command completion for yc.
 if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
+
+#
+# Cleanup
+#
+unset -m "_zshrc_*"
