@@ -145,6 +145,13 @@ alias nots='ya tool nots'
 alias p=pnpm
 
 #
+# Homebrew
+#
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+#
 # NVM and FNM must be after any PATH modifications
 #
 if [[ -d "$HOME/.fnm" ]]; then
@@ -189,10 +196,6 @@ fi
 #
 if which skotty &>/dev/null; then
     eval "$(skotty ssh env)"
-fi
-
-if [[ -f /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 if which arc &>/dev/null; then
