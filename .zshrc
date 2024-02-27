@@ -70,7 +70,6 @@ plugins=(
     gulp
     invoke
     iterm2
-    last-working-dir
     redis-cli
     urltools
     zsh-interactive-cd
@@ -85,6 +84,10 @@ case "$_zshrc_platform" in
         plugins+=(ubuntu)
         ;;
 esac
+
+if [[ -n "$TMUX" ]]; then
+    plugins+=(last-working-dir)
+fi
 
 #
 # User defined .zshrc
