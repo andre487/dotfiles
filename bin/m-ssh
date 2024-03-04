@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+while :; do
+    ssh "$@"
+    exit_code="$?"
+    if [[ "$exit_code" == 143 ]]; then
+        break
+    fi
+    echo "Exit code: $exit_code. Reconnect"
+done
+exit "$exit_code"
