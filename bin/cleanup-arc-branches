@@ -66,5 +66,5 @@ elif [[ "$*" =~ '--all-remote' ]]; then
     done
 else
     echo "Remove all branches except current and main"
-    arc branch | grep -v '\*' | grep -v trunk | xargs -L1 arc branch -D
+    arc branch | grep --invert-match '\*' | grep --invert-match trunk | xargs -L1 --no-run-if-empty arc branch -D
 fi
