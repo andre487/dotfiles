@@ -6,11 +6,65 @@ if ! arc root >/dev/null; then
     exit 1
 fi
 
-if [[ "$*" =~ '-a' ]]; then
-    echo "Remove all merged branches"
-    arc branch --merged -d -a
+if [[ "$*" =~ '--merged' ]]; then
+    echo "Remove remote merged branches"
+    res_json="$(arc branch --all --merged --json)"
+    branches=($(jq <<<"$res_json" -r  'map(select(.current != true and .local != true and (.name|test(".*trunk$") != true) and (.name|test(".+/(releases|groups)/.+") != true))) | .[].name'))
+    if [[ -z "${branches:-}" ]]; then
+        echo "No branches"
+        exit 0
+    fi
+
+    for branch in "${branches[@]}"; do
+        echo "Deleting branch $branch"
+        arc push --force --delete "$branch" || true
+    done
+elif [[ "$*" =~ '--sync' ]]; then
+    echo "Remove sync branches"
+    sync_info_json="$(arc sync st --json)"
+    if [[ "$(jq <<< "$sync_info_json" -r '.mode')" != master ]]; then
+        echo "This is not a master"
+        exit 1
+    fi
+    cur_wave_name="$(jq <<<"$sync_info_json" -r '.wave_name')"
+
+    branches_json="$(arc branch --all --json)"
+    branches=($(jq <<<"$branches_json" -r  "map(select((.name|test(\".+wave-stash.+\")) and .name != \"$cur_wave_name\")) | .[].name"))
+    if [[ -z "${branches:-}" ]]; then
+        echo "No branches"
+        exit 0
+    fi
+
+    for branch in "${branches[@]}"; do
+        echo "Deleting wave $branch"
+        arc push --force --delete "$branch" || true
+    done
+elif [[ "$*" =~ '--all-remote' ]]; then
+    res_json="$(arc branch --all --json)"
+    branches=($(jq <<<"$res_json" -r  'map(select(.current != true and .local != true and (.name|test(".*trunk$") != true) and (.name|test(".+/(releases|groups|stash-wave)/.+") != true))) | .[].name'))
+    if [[ -z "${branches:-}" ]]; then
+        echo "No branches"
+        exit 0
+    fi
+
+    for branch in "${branches[@]}"; do
+        echo "$branch"
+    done
+
+    read -p "Remove these branches? [y/N]: " -n 1 -r
+    echo
+
+    need_remove="${REPLY:-n}"
+    if [[ "$need_remove" != y ]] && [[ "$need_remove" != Y ]]; then
+        exit 0
+    fi
+
+    echo "Remove remote branches"
+    for branch in "${branches[@]}"; do
+        echo "Deleting branch $branch"
+        arc push --force --delete "$branch" || true
+    done
 else
     echo "Remove all branches except current and main"
     arc branch | grep -v '\*' | grep -v trunk | xargs -L1 arc branch -D
 fi
-
