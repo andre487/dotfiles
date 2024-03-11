@@ -2,7 +2,7 @@
 while :; do
     ssh "$@"
     exit_code="$?"
-    if [[ "$exit_code" == 143 ]]; then
+    if [[ "$exit_code" == 0 ]]; then
         break
     fi
     echo "Exit code: $exit_code. Reconnect"
