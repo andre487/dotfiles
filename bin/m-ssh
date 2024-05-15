@@ -5,6 +5,7 @@ while :; do
     if [[ "$exit_code" == 0 ]]; then
         break
     fi
-    echo "Exit code: $exit_code. Reconnect"
+    echo "Exit code: $exit_code. Reconnect after 2 seconds..."
+    sleep 2
 done
 exit "$exit_code"
