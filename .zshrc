@@ -127,7 +127,7 @@ export LESS="$LESS --IGNORE-CASE --RAW-CONTROL-CHARS --squeeze-blank-lines +Gg" 
 #
 # PATH
 #
-export PATH="/usr/local/sbin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/.dotfiles/bin:$PATH:$HOME/bin:$HOME/.local/bin:/Applications/IntelliJ IDEA.app/Contents/MacOS:/Applications/CLion.app/Contents/MacOS"
+export PATH="/usr/local/sbin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/.dotfiles/bin:$HOME/go/bin:$PATH:$HOME/bin:$HOME/.local/bin:/Applications/IntelliJ IDEA.app/Contents/MacOS:/Applications/CLion.app/Contents/MacOS"
 
 #
 # Functions
