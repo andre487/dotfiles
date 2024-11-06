@@ -72,7 +72,6 @@ plugins=(
     iterm2
     redis-cli
     urltools
-    zsh-interactive-cd
     zsh-navigation-tools
 )
 
