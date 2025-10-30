@@ -146,6 +146,9 @@ tt-fix-ssh-agent() {
 alias nots='ya tool nots'
 alias p=pnpm
 
+alias rrsync='rsync -a --info=progress2 --human-readable --partial --no-inc-recursive'
+alias re-cd='cd "$PWD"'
+
 #
 # Homebrew
 #
