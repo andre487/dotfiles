@@ -140,6 +140,13 @@ tt-fix-ssh-agent() {
     ssh-add -l
 }
 
+retry() {
+    while ! "$@"; do
+        sleep 2
+        echo "Retry..." >/dev/stderr
+    done
+}
+
 #
 # Aliases
 #
