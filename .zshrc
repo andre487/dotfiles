@@ -100,8 +100,6 @@ fi
 #
 if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
     source "$ZSH/oh-my-zsh.sh"
-else
-    echo "Oh my zsh not found"
 fi
 
 #
@@ -143,7 +141,7 @@ tt-fix-ssh-agent() {
 retry() {
     while ! "$@"; do
         sleep 2
-        echo "Retry..." >/dev/stderr
+        echo "Retry..." >&2
     done
 }
 
