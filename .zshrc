@@ -50,6 +50,13 @@ COMPLETION_WAITING_DOTS="true"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 #
+# Homebrew
+#
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+#
 # Autoloading functions
 # https://zsh.sourceforge.io/Doc/Release/Functions.html
 #
@@ -57,8 +64,9 @@ if [[ ! -d ~/.zfunc ]]; then
     mkdir -m755 ~/.zfunc
 fi
 fpath=(~/.zfunc $fpath)
-if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
-    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+
+if which brew >/dev/null; then
+    fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
@@ -93,13 +101,6 @@ fi
 #
 if [[ -f "$HOME/.zshrc.extra" ]]; then
     source "$HOME/.zshrc.extra"
-fi
-
-#
-# Homebrew
-#
-if [[ -f /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 #
