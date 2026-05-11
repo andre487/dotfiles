@@ -57,6 +57,9 @@ if [[ ! -d ~/.zfunc ]]; then
     mkdir -m755 ~/.zfunc
 fi
 fpath=(~/.zfunc $fpath)
+if [[ -d /opt/homebrew/share/zsh/site-functions ]]; then
+    fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+fi
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -66,11 +69,8 @@ plugins=(
     encode64
     fzf
     gitfast
-    grunt
-    gulp
     invoke
     iterm2
-    redis-cli
     urltools
     zsh-navigation-tools
 )
@@ -93,6 +93,13 @@ fi
 #
 if [[ -f "$HOME/.zshrc.extra" ]]; then
     source "$HOME/.zshrc.extra"
+fi
+
+#
+# Homebrew
+#
+if [[ -f /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 #
@@ -155,13 +162,6 @@ alias rrsync='rsync -a --info=progress2 --human-readable --partial --no-inc-recu
 alias re-cd='cd "$PWD"'
 
 #
-# Homebrew
-#
-if [[ -f /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-#
 # NVM and FNM must be after any PATH modifications
 #
 if [[ -d "$HOME/.fnm" ]]; then
@@ -206,14 +206,6 @@ fi
 #
 if which skotty &>/dev/null; then
     eval "$(skotty ssh env)"
-fi
-
-if which arc &>/dev/null; then
-    if [[ ! -f "$HOME/.zfunc/_arc" ]]; then
-        arc completion zsh >"$HOME/.zfunc/_arc"
-        source "$HOME/.zfunc/_arc"
-        compinit
-    fi
 fi
 
 # The next line updates PATH for Yandex Cloud CLI.
