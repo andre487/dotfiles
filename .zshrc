@@ -104,22 +104,6 @@ if [[ -f "$HOME/.zshrc.extra" ]]; then
 fi
 
 #
-# Oh my ZSH activation
-#
-if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
-    source "$ZSH/oh-my-zsh.sh"
-fi
-
-#
-# FZF
-#
-if ! which fzf &>/dev/null && [[ -f "$HOME/.fzf.zsh" ]]; then
-    source "$HOME/.fzf.zsh"
-elif which fzf-history-widget &>/dev/null; then
-    bindkey '^R' fzf-history-widget
-fi
-
-#
 # Settings
 #
 export LANG=en_US.UTF-8
@@ -132,7 +116,7 @@ export LESS="$LESS --IGNORE-CASE --RAW-CONTROL-CHARS --squeeze-blank-lines +Gg" 
 #
 # PATH
 #
-export PATH="/usr/local/sbin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/.dotfiles/bin:$HOME/go/bin:$PATH:$HOME/bin:$HOME/.local/bin:/Applications/IntelliJ IDEA.app/Contents/MacOS:/Applications/CLion.app/Contents/MacOS"
+export PATH="/usr/local/sbin:/usr/local/bin:$HOME/node_modules/.bin:$HOME/.dotfiles/bin:$HOME/go/bin:$HOME/bin:$HOME/.local/bin:$PATH"
 
 #
 # Functions
@@ -147,8 +131,10 @@ tt-fix-ssh-agent() {
 }
 
 retry() {
+    local sleep_time
+    sleep_time="${ZSH_RETRY_SLEEP:-2}"
     while ! "$@"; do
-        sleep 2
+        sleep "$sleep_time"
         echo "Retry..." >&2
     done
 }
@@ -156,9 +142,6 @@ retry() {
 #
 # Aliases
 #
-alias nots='ya tool nots'
-alias p=pnpm
-
 alias rrsync='rsync -a --info=progress2 --human-readable --partial --no-inc-recursive'
 alias re-cd='cd "$PWD"'
 
@@ -193,16 +176,6 @@ if [[ -z "$FNM_DIR" ]]; then
 fi
 
 #
-# Some crutches
-#
-# Fix Puppeteer ARM installation issue: https://github.com/puppeteer/puppeteer/issues/7740
-if [[ "$_zshrc_platform" == Darwin ]] && [[ "$_zshrc_arch" == arm64 ]]; then
-    export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=1
-    export PUPPETEER_EXECUTABLE_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-    export CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-fi
-
-#
 # Extra services
 #
 if which skotty &>/dev/null; then
@@ -214,6 +187,22 @@ if [ -f "$HOME/yandex-cloud/path.bash.inc" ]; then source "$HOME/yandex-cloud/pa
 
 # The next line enables shell command completion for yc.
 if [ -f "$HOME/yandex-cloud/completion.zsh.inc" ]; then source "$HOME/yandex-cloud/completion.zsh.inc"; fi
+
+#
+# Oh my ZSH activation
+#
+if [[ -f "$ZSH/oh-my-zsh.sh" ]]; then
+    source "$ZSH/oh-my-zsh.sh"
+fi
+
+#
+# FZF
+#
+if ! which fzf &>/dev/null && [[ -f "$HOME/.fzf.zsh" ]]; then
+    source "$HOME/.fzf.zsh"
+elif which fzf-history-widget &>/dev/null; then
+    bindkey '^R' fzf-history-widget
+fi
 
 #
 # Cleanup
