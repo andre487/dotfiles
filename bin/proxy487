@@ -33,6 +33,9 @@ def main():
         else:
             halt(f"{chosen_host} is not in ~/.proxy487/proxy-list.txt")
 
+    if '?' in proxy:
+        proxy = proxy.split('?', 1)[0]
+
     os.environ.update(
         http_proxy=proxy,
         https_proxy=proxy,
