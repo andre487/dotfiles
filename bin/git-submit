@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -eufo pipefail
+
+cd "$(git rev-parse --show-toplevel)"
+
+git add .
+git commit . "$@"
+
+master_name=master
+if git branch --remotes | grep main &>/dev/null; then
+    master_name=main
+fi
+while ! git push origin "$master_name"; do
+    sleep 1
+    echo "Retry push"
+done
