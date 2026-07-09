@@ -4,6 +4,8 @@ import pathlib
 import sys
 from urllib.parse import urlsplit
 
+no_proxy = 'localhost,127.0.0.0/8,192.168.0.0/16,::1'
+
 
 def main():
     config_dir = pathlib.Path().home() / ".proxy487"
@@ -36,10 +38,14 @@ def main():
     if '?' in proxy:
         proxy = proxy.split('?', 1)[0]
 
-    os.environ.update(
-        http_proxy=proxy,
-        https_proxy=proxy,
-    )
+    os.environ.update({
+        "http_proxy": proxy,
+        "HTTP_PROXY": proxy,
+        "https_proxy": proxy,
+        "HTTPS_PROXY": proxy,
+        "no_proxy": no_proxy,
+        "NO_PROXY": no_proxy,
+    })
     os.execvpe(sys.argv[1], sys.argv[1:], env=os.environ)
 
 
