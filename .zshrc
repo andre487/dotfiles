@@ -111,7 +111,7 @@ export LC_ALL="$LANG"
 
 export EDITOR="vim"
 export BC_ENV_ARGS='-lq'
-export LESS="$LESS --IGNORE-CASE --RAW-CONTROL-CHARS --squeeze-blank-lines +Gg" # +Gg - highlight all searches
+export LESS="$LESS --RAW-CONTROL-CHARS --squeeze-blank-lines +Gg" # +Gg - highlight all searches
 
 #
 # PATH
