@@ -39,6 +39,8 @@ def main():
         proxy = proxy.split('?', 1)[0]
 
     os.environ.update({
+        "all_proxy": proxy,
+        "ALL_PROXY": proxy,
         "http_proxy": proxy,
         "HTTP_PROXY": proxy,
         "https_proxy": proxy,
