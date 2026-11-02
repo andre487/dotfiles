@@ -65,7 +65,7 @@ if [[ ! -d ~/.zfunc ]]; then
 fi
 fpath=(~/.zfunc $fpath)
 
-if which brew >/dev/null; then
+if which brew >/dev/null 2>&1; then
     fpath=("$(brew --prefix)/share/zsh/site-functions" $fpath)
 fi
 
