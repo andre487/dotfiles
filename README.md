@@ -14,6 +14,8 @@ curl -L https://github.com/andre487/dotfiles/raw/master/setup.sh | bash
 - Copies `.editorconfig`, `.gitconfig`, `.vimrc` and the current shell's PowerShell profile; backs up changed files.
 - Run setup in each shell you use (Windows PowerShell / PowerShell 7).
 - Profile: Vim editor, user PATH directories, fnm if installed; local settings in `~/.powershell-profile.extra.ps1`.
+- Prompt: green/red arrow for command success/failure and current directory, like zsh's `robbyrussell` without Git.
+- Up/Down arrows search history by the typed prefix (PSReadLine).
 
 Install / update without changing ExecutionPolicy:
 

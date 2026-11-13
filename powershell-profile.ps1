@@ -9,8 +9,25 @@ foreach ($directory in @("$HOME/bin", "$HOME/.local/bin", "$HOME/go/bin", "$HOME
     }
 }
 
+function prompt {
+    $succeeded = $?
+    $arrowColor = if ($succeeded) { 'Green' } else { 'Red' }
+    $location = Get-Location
+    $label = if ($location.Path -eq $HOME) { '~' } else { Split-Path $location.Path -Leaf }
+    if (-not $label) { $label = $location.Path }
+    Write-Host ([char]0x279C) -NoNewline -ForegroundColor $arrowColor
+    Write-Host "  $label" -NoNewline -ForegroundColor Cyan
+    return ' > '
+}
+
 if (Get-Command fnm -ErrorAction SilentlyContinue) {
     fnm env --use-on-cd --shell powershell | Out-String | Invoke-Expression
+}
+
+if (Get-Command Set-PSReadLineKeyHandler -ErrorAction SilentlyContinue) {
+    Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+    Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+    Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
 }
 
 $extraProfile = Join-Path $HOME '.powershell-profile.extra.ps1'
