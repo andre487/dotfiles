@@ -1,6 +1,6 @@
 [user]
     name = Andrey Prokopyuk
-    email = andrey.prokopyuk@gmail.com
+    email = der-morgenstern@yandex.ru
 
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol,space-before-tab

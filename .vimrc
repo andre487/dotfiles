@@ -6,8 +6,12 @@ if has("user_commands")
   if !filereadable(vundle_readme)
     echo "Installing Vundle.."
     echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/Vundle.vim
+    call mkdir(expand('~/.vim/bundle'), 'p')
+    call system('git clone https://github.com/VundleVim/Vundle.vim.git ' . shellescape(expand('~/.vim/bundle/Vundle.vim')))
+    if v:shell_error
+      echoerr 'Vundle installation failed; check Git and network access, then restart Vim.'
+      finish
+    endif
     let VundleInstalled=1
   endif
 endif
@@ -15,7 +19,7 @@ endif
 filetype off
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#begin()
+call vundle#begin(expand('~/.vim/bundle'))
 
 " utils
 Plugin 'VundleVim/Vundle.vim'      " Vundle bundler, https://github.com/VundleVim/Vundle.vim
@@ -43,9 +47,11 @@ set encoding=utf-8
 set ttyfast
 set nobackup
 set noswapfile
-set shell=/bin/bash
+if !has('win32') && !has('win64')
+  set shell=/bin/bash
+endif
 
-set exrc secure
+set noexrc secure
 set autoread
 
 set undofile
@@ -152,6 +158,6 @@ let NERDTreeShowHidden=1
 if has("user_commands")
   let vimrc_extra=expand('~/.vimrc.extra')
   if filereadable(vimrc_extra)
-      execute 'source '.vimrc_extra
+      execute 'source ' . fnameescape(vimrc_extra)
   endif
 endif

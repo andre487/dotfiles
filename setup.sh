@@ -22,7 +22,7 @@ fi
 cd - >/dev/null
 
 # Create config files
-IFS=$'\n' read -r -d '' -a config_files < <(find "$configs_dir" -maxdepth 1 -type f -name "\.*" -exec basename {} \; && printf '\0')
+config_files=(.editorconfig .gitconfig .tmux.conf .vimrc .zshrc)
 for file in "${config_files[@]}"; do
     file_path="$HOME/$file"
     if [[ -L "$file_path" ]]; then
